@@ -9,6 +9,7 @@
       "VisGraphMixin",
       "IMinecraft",
       "ITimer",
-      "IEntityPlayerSP"
+      "IEntityPlayerSP",
+      "ICPacketCustomPayload"
   ]
 }

@@ -1,5 +1,6 @@
 package com.vydra.death.screen.modules;
 
+import com.vydra.death.screen.modules.impl.client.BirkaBypass;
 import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.impl.combat.FeetTrap;
 import com.vydra.death.screen.modules.impl.miscalaneous.Freecam;
@@ -21,7 +22,8 @@ public class ModuleManager {
             new Gui(),
             new Step(),
             new FullBright(),
-            new FeetTrap()
+            new FeetTrap(),
+            new BirkaBypass()
     };
 
     public void register() {

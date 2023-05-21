@@ -45,7 +45,7 @@ public class SliderComponent extends Component {
 
         //Rendering module name
         drawStringCustom(setting.name, (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
-        drawStringCustom(String.valueOf(setting.getValue()),(int) x+getWidth()-11, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+        drawStringCustom(String.valueOf(setting.getValue()),(int) x+getWidth()-15, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
     }
 
     @Override
