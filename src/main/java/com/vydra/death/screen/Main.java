@@ -1,5 +1,6 @@
 package com.vydra.death.screen;
 
+import com.vydra.death.screen.manager.RotationManager;
 import com.vydra.death.screen.modules.ModuleManager;
 import com.vydra.death.screen.modules.settings.SettingManager;
 import net.minecraftforge.fml.common.Mod;
@@ -17,6 +18,7 @@ public class Main {
 
     public static SettingManager settingManager;
     public static ModuleManager moduleManager;
+    public static RotationManager rotationManager;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -24,6 +26,8 @@ public class Main {
         settingManager = new SettingManager();
         moduleManager = new ModuleManager();
         moduleManager.register();
+
+        rotationManager = new RotationManager();
     }
 
 }

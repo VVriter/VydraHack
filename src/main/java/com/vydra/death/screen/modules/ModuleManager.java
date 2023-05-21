@@ -1,6 +1,7 @@
 package com.vydra.death.screen.modules;
 
 import com.vydra.death.screen.modules.impl.client.Gui;
+import com.vydra.death.screen.modules.impl.combat.FeetTrap;
 import com.vydra.death.screen.modules.impl.miscalaneous.Freecam;
 import com.vydra.death.screen.modules.impl.miscalaneous.BebraModule;
 import com.vydra.death.screen.modules.impl.movement.Step;
@@ -19,7 +20,8 @@ public class ModuleManager {
             new Freecam(),
             new Gui(),
             new Step(),
-            new FullBright()
+            new FullBright(),
+            new FeetTrap()
     };
 
     public void register() {
