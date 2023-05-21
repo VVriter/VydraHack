@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 public class VydraGui extends GuiScreen {
 
+    public static boolean isDragging = true;
     int xOffset = 3;
     List<Frame> frames;
 
@@ -21,6 +22,7 @@ public class VydraGui extends GuiScreen {
     public void initGui() {
         super.initGui();
         frames = new ArrayList<>();
+        isDragging = false;
         Stream.of(Category.values()).forEach(e -> {
             Frame frame = new Frame(e, xOffset);
             frames.add(frame);
@@ -28,10 +30,10 @@ public class VydraGui extends GuiScreen {
         });
     }
 
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
-
         ScaledResolution sr = new ScaledResolution(mc);
         Render2d.drawSvastica(new Point2D.Double(sr.getScaledWidth()/2, sr.getScaledHeight()/2), 10, Color.RED.getRGB(), 100);
 
@@ -41,7 +43,14 @@ public class VydraGui extends GuiScreen {
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
         super.mouseClicked(mouseX, mouseY, mouseButton);
+        isDragging = true;
         frames.forEach(frame -> frame.handleClick(mouseX, mouseY, mouseButton));
+    }
+
+    @Override
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+        super.mouseReleased(mouseX, mouseY, state);
+        isDragging = false;
     }
 
     @Override

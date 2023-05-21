@@ -40,6 +40,13 @@ public class ModuleComponent extends Component {
                     break;
                 }
 
+                case NUMBER: {
+                    SliderComponent component = new SliderComponent(setting, x, settingYOffset+getHeight());
+                    settings.add(component);
+                    settingYOffset += component.getHeight();
+                    break;
+                }
+
             }
 
 

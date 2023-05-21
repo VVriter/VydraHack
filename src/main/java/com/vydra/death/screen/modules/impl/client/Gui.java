@@ -12,6 +12,7 @@ public class Gui extends Module {
     }
 
     private Setting<Boolean> bebra = new Setting<>("bBe23123123123bra", true, this);
+    public Setting<Double> test = new Setting<>("Radius", (double)4, this, 0, 10);
 
     @Override
     public void onDisable() {

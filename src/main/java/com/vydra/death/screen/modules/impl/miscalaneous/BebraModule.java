@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.input.Keyboard;
 
 public class BebraModule extends Module {
-    public BebraModule() { super("BEBRAMODULE", "cummye", Category.MOVEMENT, Keyboard.KEY_C); }
+    public BebraModule() { super("BEBRAMODULE", "cummye", Category.MISCALANEOUS, Keyboard.KEY_C); }
 
     @Override
     public void onEnable() {
