@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "package": "com.vydra.death.screen.mixins",
+  "refmap": "mixins.death.refmap.json",
+  "mixins": [
+      "PacketEventMixin",
+      "ICPacketPlayer",
+      "VisGraphMixin",
+      "IMinecraft",
+      "ITimer",
+      "IEntityPlayerSP"
+  ]
+}

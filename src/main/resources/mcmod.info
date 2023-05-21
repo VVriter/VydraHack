@@ -1,0 +1,16 @@
+[
+{
+  "modid": "antideathscreen",
+  "name": "Anti Death Screen Bug",
+  "description": "Removes vanilla hight ping bug with deatch screen",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["dazed68"],
+  "credits": "Vydra solutions",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
