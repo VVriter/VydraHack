@@ -4,6 +4,7 @@ import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.impl.miscalaneous.Freecam;
 import com.vydra.death.screen.modules.impl.miscalaneous.BebraModule;
 import com.vydra.death.screen.modules.impl.movement.Step;
+import com.vydra.death.screen.modules.impl.render.FullBright;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -17,7 +18,8 @@ public class ModuleManager {
             new BebraModule(),
             new Freecam(),
             new Gui(),
-            new Step()
+            new Step(),
+            new FullBright()
     };
 
     public void register() {
