@@ -15,7 +15,7 @@ public class IconTitleManager {
 
     public IconTitleManager() {
         setupIcon();
-        setTitele("VydraHack");
+        setTitle("VydraHack");
     }
 
 
@@ -29,7 +29,7 @@ public class IconTitleManager {
         }
     }
 
-    public void setTitele(String t) {
+    public void setTitle(String t) {
         Display.setTitle(t);
     }
 

@@ -103,7 +103,7 @@ public class CategoryComponent implements IGuiComponent {
         components.stream().filter(component -> GuiUtil.isHoveringOnTheComponent(component, x, y)).forEach(component -> component.onHover(x, y));
 
         if (!GuiUtil.isHoveringOnTheComponent(this, x, y)) return;
-
+        
     }
 
 
