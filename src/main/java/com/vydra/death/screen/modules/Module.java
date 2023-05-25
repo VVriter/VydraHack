@@ -1,7 +1,9 @@
 package com.vydra.death.screen.modules;
 
+import com.vydra.death.screen.modules.settings.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
+import org.lwjgl.input.Keyboard;
 
 public class Module {
 
@@ -13,6 +15,8 @@ public class Module {
     private int key = 1;
     public boolean isEnabled = false;
 
+    public Setting<Integer> keySetting = new Setting<>("Key", Keyboard.KEY_NONE, this);
+
     public Module(String name, String description, Category category) {
         this.name = name;
         this.description = description;
@@ -20,6 +24,7 @@ public class Module {
     }
 
     public Module(String name, String description, Category category, int key) {
+        keySetting.setValue(key);
         this.name = name;
         this.description = description;
         this.category = category;
@@ -53,9 +58,9 @@ public class Module {
     }
 
     public int getKey() {
-        return key == 1 ? null : key;
+        return keySetting.getValue();
     }
-    public void setKey(int key) { this.key = key; }
+    public void setKey(int key) { keySetting.setValue(key); }
 
 }
 

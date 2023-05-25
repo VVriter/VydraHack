@@ -1,6 +1,6 @@
 package com.vydra.death.screen.modules.impl.client;
 
-import com.vydra.death.screen.gui.VydraGui;
+import com.vydra.death.screen.gui.click.GuiMain;
 import com.vydra.death.screen.modules.Category;
 import com.vydra.death.screen.modules.Module;
 import com.vydra.death.screen.modules.settings.Setting;
@@ -23,6 +23,6 @@ public class Gui extends Module {
     @Override
     public void toogle() {
         super.toogle();
-        mc.displayGuiScreen(new VydraGui());
+        mc.displayGuiScreen(new GuiMain());
     }
 }

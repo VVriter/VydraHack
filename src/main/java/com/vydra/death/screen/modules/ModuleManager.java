@@ -1,10 +1,13 @@
 package com.vydra.death.screen.modules;
 
 import com.vydra.death.screen.modules.impl.client.BirkaBypass;
+import com.vydra.death.screen.modules.impl.client.DiscordRPC;
 import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.impl.combat.FeetTrap;
 import com.vydra.death.screen.modules.impl.miscalaneous.Freecam;
 import com.vydra.death.screen.modules.impl.miscalaneous.BebraModule;
+import com.vydra.death.screen.modules.impl.miscalaneous.ObsidianFiller;
+import com.vydra.death.screen.modules.impl.movement.CornerClip;
 import com.vydra.death.screen.modules.impl.movement.Step;
 import com.vydra.death.screen.modules.impl.render.FullBright;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,7 +26,10 @@ public class ModuleManager {
             new Step(),
             new FullBright(),
             new FeetTrap(),
-            new BirkaBypass()
+            new BirkaBypass(),
+            new ObsidianFiller(),
+            new DiscordRPC(),
+            new CornerClip()
     };
 
     public void register() {

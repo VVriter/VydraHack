@@ -4,6 +4,7 @@ import com.vydra.death.screen.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketEntityAction;
@@ -13,7 +14,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,7 +54,7 @@ public class BlockUtil {
             sneaking = true;
         }
         if (rotate)
-            Main.rotationManager.rotateSpoof(hitVec);
+            RotationUtil.packetFacePitchAndYaw(RotationUtil.getRotations(hitVec)[1],RotationUtil.getRotations(hitVec)[0]);
 
         mc.player.connection.sendPacket(new CPacketPlayerTryUseItem(hand));
         BlockUtil.rightClickBlock(neighbour, hitVec, hand, opposite, packet);
@@ -111,4 +114,44 @@ public class BlockUtil {
         return true;
     }
 
+
+
+    public static List<BlockPos> getSphere(float radius, boolean ignoreAir, Entity entity) {
+        ArrayList<BlockPos> sphere = new ArrayList<BlockPos>();
+        BlockPos pos = new BlockPos(entity.getPositionVector());
+        int posX = pos.getX();
+        int posY = pos.getY();
+        int posZ = pos.getZ();
+        int radiuss = (int)radius;
+        int x = posX - radiuss;
+        while ((float)x <= (float)posX + radius) {
+            int z = posZ - radiuss;
+            while ((float)z <= (float)posZ + radius) {
+                int y = posY - radiuss;
+                while ((float)y < (float)posY + radius) {
+                    if ((float)((posX - x) * (posX - x) + (posZ - z) * (posZ - z) + (posY - y) * (posY - y)) < radius * radius) {
+                        BlockPos position = new BlockPos(x, y, z);
+                        if (!ignoreAir || mc.world.getBlockState(position).getBlock() != Blocks.AIR) {
+                            sphere.add(position);
+                        }
+                    }
+                    ++y;
+                }
+                ++z;
+            }
+            ++x;
+        }
+        return sphere;
+    }
+
+
+    public static boolean canPlayerSeeBlock(BlockPos pos, World world) {
+        RayTraceResult rayTraceResult = world.rayTraceBlocks(
+                new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ),
+                new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
+                false, true, false
+        );
+
+        return rayTraceResult != null && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK && rayTraceResult.getBlockPos().equals(pos);
+    }
 }

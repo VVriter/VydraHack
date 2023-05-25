@@ -20,7 +20,7 @@ import org.lwjgl.input.Keyboard;
 import java.util.stream.Stream;
 
 public class FeetTrap extends Module {
-    public FeetTrap() { super("FeetTrap", "", Category.COMBAT, Keyboard.KEY_X); }
+    public FeetTrap() { super("FeetTrap", "", Category.COMBAT, 0x00); }
 
     public Setting<Double> delay = new Setting<>("Delay", (double)50, this, 0, 200);
     private Setting<Boolean> rotate = new Setting<>("Rotate", true, this);

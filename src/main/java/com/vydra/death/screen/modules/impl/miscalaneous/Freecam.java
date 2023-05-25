@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 
 public class Freecam extends Module {
-    public Freecam() { super("Freecam", "Module to do fly in walls", Category.MISCALANEOUS, Keyboard.KEY_G); }
+    public Freecam() { super("Freecam", "Module to do fly in walls", Category.MISCALANEOUS, 0x00); }
 
 
     private Vec3d startPos = null;

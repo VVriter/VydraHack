@@ -5,10 +5,9 @@ import com.vydra.death.screen.modules.Module;
 import com.vydra.death.screen.util.EspUtil;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.lwjgl.input.Keyboard;
 
 public class BebraModule extends Module {
-    public BebraModule() { super("BEBRAMODULE", "cummye", Category.MISCALANEOUS, Keyboard.KEY_C); }
+    public BebraModule() { super("BEBRAMODULE", "cummye", Category.MISCALANEOUS, 0x00); }
 
     @Override
     public void onEnable() {

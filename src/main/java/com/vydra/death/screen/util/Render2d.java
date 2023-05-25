@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import org.lwjgl.opengl.GL11;
+import scala.tools.nsc.typechecker.StdAttachments;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -145,7 +146,10 @@ public class Render2d {
 
         drawGradientLine(point, new Point2D.Double(point.x-size, point.y), new Color(color), new Color(color), (int) width);
         drawGradientLine(new Point2D.Double(point.x-size, point.y), new Point2D.Double(point.x - size, point.y-size), new Color(color), new Color(color), (int) width);
-
     }
+
+
+
+
 
 }

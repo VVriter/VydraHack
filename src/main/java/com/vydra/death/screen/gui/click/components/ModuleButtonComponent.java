@@ -1,26 +1,51 @@
-package com.vydra.death.screen.gui.components;
+package com.vydra.death.screen.gui.click.components;
 
-import com.vydra.death.screen.gui.Component;
+import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.Module;
 import com.vydra.death.screen.util.Render2d;
-import net.minecraft.client.renderer.GlStateManager;
 
 import java.awt.*;
 
-import static com.vydra.death.screen.util.Render2d.mc;
+import static com.vydra.death.screen.gui.click.GuiUtil.drawStringCustom;
 
-public class ModuleButtonComponent extends Component {
+public class ModuleButtonComponent implements IGuiComponent {
+
 
     private Module module;
+    private int x;
+    private int y;
+
+
     public ModuleButtonComponent(Module module, int x, int y) {
-        super(x, y, 100, 13);
         this.module = module;
+        this.x = x;
+        this.y = y;
     }
 
 
+
+
+
+
     @Override
-    public void draw(int mouseX, int mouseY) {
-        super.draw(mouseX, mouseY);
+    public void onClick(int x, int y, int state) {
+        switch (state) {
+
+            case 0: {
+                module.toogle();
+                break;
+            }
+
+        }
+    }
+
+    @Override
+    public void onHover(int x, int y) {
+
+    }
+
+    @Override
+    public void draw() {
         Render2d.drawGradientRectVertical(
                 new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
                 new Color(0xC9B9166E, true),
@@ -31,8 +56,8 @@ public class ModuleButtonComponent extends Component {
         if (module.isEnabled) {
             Render2d.drawGradientRectHorizontal(
                     new Rectangle((int) x, (int) y, getWidth(), getHeight()),
-                    new Color(0xC9439C92, true),
-                    new Color(0xC90B34BE, true)
+                    new Color(0xBA4F0B9B, true),
+                    new Color(0xC93911A1, true)
             );
         } else {
             Render2d.drawGradientRectHorizontal(
@@ -47,10 +72,28 @@ public class ModuleButtonComponent extends Component {
     }
 
 
-    public void drawStringCustom(String text, int x, int y, int color, double scaleX, double scaleY) {
-        GlStateManager.pushMatrix();
-        GlStateManager.scale(scaleX, scaleY, 1.0);
-        mc.fontRenderer.drawString(text, (int) (x / scaleX), (int) (y / scaleY), color);
-        GlStateManager.popMatrix();
+    @Override
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    @Override
+    public int getWidth() {
+        return 100;
+    }
+
+    @Override
+    public int getHeight() {
+        return 13;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
     }
 }
