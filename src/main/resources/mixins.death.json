@@ -11,6 +11,8 @@
       "ITimer",
       "IEntityPlayerSP",
       "ICPacketCustomPayload",
-      "MixinEntityPlayerSP"
+      "MixinEntityPlayerSP",
+      "MixinItemRender",
+      "MixinEntityLivingBase"
   ]
 }

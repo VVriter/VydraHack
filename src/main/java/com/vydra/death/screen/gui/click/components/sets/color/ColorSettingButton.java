@@ -1,30 +1,30 @@
-package com.vydra.death.screen.gui.click.components;
+package com.vydra.death.screen.gui.click.components.sets.color;
 
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
-import com.vydra.death.screen.modules.Module;
+import com.vydra.death.screen.modules.settings.Setting;
 import com.vydra.death.screen.util.Render2d;
 import com.vydra.death.screen.util.animations.EaseLeft;
 import com.vydra.death.screen.util.animations.EaseRight;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 import static com.vydra.death.screen.gui.click.GuiUtil.drawStringCustom;
 
-public class ModuleButtonComponent implements IGuiComponent {
+public class ColorSettingButton implements IGuiComponent {
 
-
-    private Module module;
     private int x;
     private int y;
+    private Setting setting;
     private EaseRight easeRight;
     private EaseLeft easeLeft;
 
-
-    public ModuleButtonComponent(Module module, int x, int y) {
-        this.module = module;
+    public ColorSettingButton(Setting setting, int x, int y) {
+        this.setting = setting;
         this.x = x;
         this.y = y;
+
         easeRight = new EaseRight();
         easeLeft = new EaseLeft();
     }
@@ -33,25 +33,16 @@ public class ModuleButtonComponent implements IGuiComponent {
 
 
 
-
     @Override
     public void onClick(int x, int y, int state) {
-        switch (state) {
-
-            case 0: {
-                module.toogle();
-                break;
-            }
+        if (GuiUtil.isHoveringOnTheComponent(this, x, y)) {
 
         }
     }
 
 
-
     int hoverAnimationx = 0;
     boolean isHovering = false;
-
-
 
     @Override
     public void onHover(int x, int y) {
@@ -61,28 +52,17 @@ public class ModuleButtonComponent implements IGuiComponent {
         }
     }
 
+
     @Override
     public void draw() {
-        Render2d.drawGradientRectVertical(
+
+
+        Render2d.drawGradientRectHorizontal(
                 new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
                 new Color(0xC9B9166E, true),
                 new Color(0xC95D439C, true)
         );
 
-
-        if (module.isEnabled) {
-            Render2d.drawGradientRectHorizontal(
-                    new Rectangle((int) x, (int) y, getWidth(), getHeight()),
-                    new Color(0xBA4F0B9B, true),
-                    new Color(0xC93911A1, true)
-            );
-        } else {
-            Render2d.drawGradientRectHorizontal(
-                    new Rectangle((int) x, (int) y, getWidth(), getHeight()),
-                    new Color(0xC95D439C, true),
-                    new Color(0xC9B9166E, true)
-            );
-        }
 
         if (!isHovering && hoverAnimationx != 0) {
             hoverAnimationx = easeLeft.getValue(hoverAnimationx, y, 5);
@@ -99,17 +79,17 @@ public class ModuleButtonComponent implements IGuiComponent {
         );
 
 
-        //Rendering module name
-        drawStringCustom(module.getName(), (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+        drawStringCustom(setting.name, (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+        Render2d.drawFilledCircle(new Point2D.Double(x + getWidth() - 10, y+6),(Color) setting.getValue(), 4);
 
         isHovering = false;
     }
 
 
-    @Override
-    public void setY(int y) {
-        this.y = y;
-    }
+
+
+
+
 
     @Override
     public int getWidth() {
@@ -129,5 +109,11 @@ public class ModuleButtonComponent implements IGuiComponent {
     @Override
     public int getY() {
         return y;
+    }
+
+    @Override
+    public void setY(int y) {
+        IGuiComponent.super.setY(y);
+        this.y = y;
     }
 }

@@ -4,6 +4,8 @@ import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.settings.Setting;
 import com.vydra.death.screen.util.Render2d;
+import com.vydra.death.screen.util.animations.EaseLeft;
+import com.vydra.death.screen.util.animations.EaseRight;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
@@ -18,10 +20,16 @@ public class KeySettingComponent implements IGuiComponent {
     private int y;
     private Setting setting;
 
+    private EaseRight easeRight;
+    private EaseLeft easeLeft;
+
     public KeySettingComponent(Setting setting, int x, int y) {
         this.setting = setting;
         this.x = x;
         this.y = y;
+
+        easeRight = new EaseRight();
+        easeLeft = new EaseLeft();
     }
 
 
@@ -38,9 +46,15 @@ public class KeySettingComponent implements IGuiComponent {
 
     }
 
+    int hoverAnimationx = 0;
+    boolean isHovering = false;
+
     @Override
     public void onHover(int x, int y) {
-
+        if (GuiUtil.isHoveringOnTheComponent(this, x, y))
+        {
+            isHovering = true;
+        }
     }
 
     @Override
@@ -58,7 +72,33 @@ public class KeySettingComponent implements IGuiComponent {
                 new Color(0xC93911A1, true)
         );
 
+
+
+
+        if (!isHovering && hoverAnimationx != 0) {
+            hoverAnimationx = easeLeft.getValue(hoverAnimationx, y, 5);
+        }
+
+        if (isHovering && hoverAnimationx != getWidth()) {
+            hoverAnimationx = easeRight.getValue(hoverAnimationx, y, 5);
+        }
+
+        Render2d.drawGradientRectHorizontal(
+                new Rectangle((int) x, (int) y, hoverAnimationx, getHeight()),
+                new Color(0x8C1A0750, true),
+                new Color(0x8C1A0750, true)
+        );
+
+
+
+
+
         if (GuiUtil.isListeningKey && GuiUtil.keyListenedSetting.equals(setting)) {
+            Render2d.drawGradientRectHorizontal(
+                    new Rectangle((int) x, (int) y, hoverAnimationx, getHeight()),
+                    new Color(0x8C1A0750, true),
+                    new Color(0x8C1A0750, true)
+            );
             Render2d.drawGradientRectHorizontal(
                     new Rectangle((int) x, (int) y, getWidth(), getHeight()),
                     new Color(0xBA4F0B9B, true),
@@ -66,6 +106,11 @@ public class KeySettingComponent implements IGuiComponent {
             );
             drawStringCustom("Listening...", (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
         } else {
+            Render2d.drawGradientRectHorizontal(
+                    new Rectangle((int) x, (int) y, hoverAnimationx, getHeight()),
+                    new Color(0x8C1A0750, true),
+                    new Color(0x8C1A0750, true)
+            );
             Render2d.drawGradientRectHorizontal(
                     new Rectangle((int) x, (int) y, getWidth(), getHeight()),
                     new Color(0xC95D439C, true),
@@ -84,7 +129,7 @@ public class KeySettingComponent implements IGuiComponent {
 
         }
 
-
+        isHovering = false;
 
     }
 

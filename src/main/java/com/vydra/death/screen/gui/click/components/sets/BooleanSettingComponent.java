@@ -1,8 +1,11 @@
 package com.vydra.death.screen.gui.click.components.sets;
 
+import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.settings.Setting;
 import com.vydra.death.screen.util.Render2d;
+import com.vydra.death.screen.util.animations.EaseLeft;
+import com.vydra.death.screen.util.animations.EaseRight;
 
 import java.awt.*;
 
@@ -14,10 +17,16 @@ public class BooleanSettingComponent implements IGuiComponent {
     private int x;
     private int y;
 
+    private EaseRight easeRight;
+    private EaseLeft easeLeft;
+
     public BooleanSettingComponent(Setting setting, int x, int y) {
         this.setting = setting;
         this.x = x;
         this.y = y;
+
+        easeRight = new EaseRight();
+        easeLeft = new EaseLeft();
     }
 
 
@@ -35,9 +44,16 @@ public class BooleanSettingComponent implements IGuiComponent {
         }
     }
 
+
+    int hoverAnimationx = 0;
+    boolean isHovering = false;
+
     @Override
     public void onHover(int x, int y) {
-
+        if (GuiUtil.isHoveringOnTheComponent(this, x, y))
+        {
+            isHovering = true;
+        }
     }
 
     @Override
@@ -63,8 +79,23 @@ public class BooleanSettingComponent implements IGuiComponent {
             );
         }
 
+        if (!isHovering && hoverAnimationx != 0) {
+            hoverAnimationx = easeLeft.getValue(hoverAnimationx, y, 5);
+        }
+
+        if (isHovering && hoverAnimationx != getWidth()) {
+            hoverAnimationx = easeRight.getValue(hoverAnimationx, y, 5);
+        }
+
+        Render2d.drawGradientRectHorizontal(
+                new Rectangle((int) x, (int) y, hoverAnimationx, getHeight()),
+                new Color(0x8C1A0750, true),
+                new Color(0x8C1A0750, true)
+        );
 
         drawStringCustom(setting.name, (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+
+        isHovering = false;
     }
 
 

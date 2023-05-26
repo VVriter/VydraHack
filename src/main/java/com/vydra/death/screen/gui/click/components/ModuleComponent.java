@@ -6,6 +6,7 @@ import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.gui.click.components.sets.BooleanSettingComponent;
 import com.vydra.death.screen.gui.click.components.sets.KeySettingComponent;
 import com.vydra.death.screen.gui.click.components.sets.SliderSettingComponent;
+import com.vydra.death.screen.gui.click.components.sets.color.ColorSettingComponent;
 import com.vydra.death.screen.modules.Module;
 import java.awt.*;
 import java.util.ArrayList;
@@ -30,7 +31,6 @@ public class ModuleComponent implements IGuiComponent {
         this.module = module;
         settings = new ArrayList<>();
 
-
         moduleButtonComponent = new ModuleButtonComponent(module, x, y);
 
         Main.settingManager.modulesSettings(module).forEach(setting -> {
@@ -49,46 +49,32 @@ public class ModuleComponent implements IGuiComponent {
                     settings.add(new KeySettingComponent(setting, x, y));
                     break;
                 }
+
+                case COLOR: {
+                    settings.add(new ColorSettingComponent(setting, x, y));
+                    break;
+                }
             }
         });
     }
 
-
-
     @Override
     public void onClick(int x, int y, int state) {
-
-
         settings.stream().filter(setting -> GuiUtil.isHoveringOnTheComponent(setting, x, y)).forEach(e-> e.onClick(x, y, state));
-
 
         if (GuiUtil.isHoveringOnTheComponent(moduleButtonComponent, x, y)) {
             if (state == 1) {
-
-                if (!isOpened) {
-                    int off = 0;
-                    for (IGuiComponent component : settings) {
-                        off += component.getHeight();
-                    }
-                    settingsOffset = 13 + off;
-                } else {
-                    settingsOffset = 13;
-                }
-
                 isOpened = !isOpened;
+                updateSettingsOffset();
             }
             moduleButtonComponent.onClick(x, y, state);
         }
-
-
     }
-
-
 
     @Override
     public void onHover(int x, int y) {
-
         settings.stream().filter(setting -> GuiUtil.isHoveringOnTheComponent(setting, x, y)).forEach(e-> e.onHover(x, y));
+        moduleButtonComponent.onHover(x, y);
 
         if (!GuiUtil.isHoveringOnTheComponent(this, x, y)) return;
         //Hovering logic here
@@ -96,6 +82,7 @@ public class ModuleComponent implements IGuiComponent {
 
     @Override
     public void draw() {
+        updateSettingsOffset();
         moduleButtonComponent.setY(getY());
         moduleButtonComponent.draw();
 
@@ -103,16 +90,17 @@ public class ModuleComponent implements IGuiComponent {
 
         if (!Main.settingManager.modulesSettings(module).isEmpty()) {
             if (isOpened) {
-                drawStringCustom("-",(int) x+getWidth()-6, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+                drawStringCustom("-", (int) x + getWidth() - 6, (int) y + 4, Color.WHITE.getRGB(), 0.9, 0.9);
                 for (IGuiComponent component : settings) {
                     component.setY(settingYOffset);
                     component.draw();
                     settingYOffset += component.getHeight();
                 }
-            } else drawStringCustom("+",(int) x+getWidth()-6, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+            } else {
+                drawStringCustom("+", (int) x + getWidth() - 6, (int) y + 4, Color.WHITE.getRGB(), 0.9, 0.9);
+            }
         }
     }
-
 
     @Override
     public void onKeyTyped(int keycode) {
@@ -123,8 +111,6 @@ public class ModuleComponent implements IGuiComponent {
     public void setY(int y) {
         this.y = y;
     }
-
-
 
     @Override
     public int getWidth() {
@@ -144,5 +130,17 @@ public class ModuleComponent implements IGuiComponent {
     @Override
     public int getY() {
         return y;
+    }
+
+    private void updateSettingsOffset() {
+        int off = 0;
+        for (IGuiComponent component : settings) {
+            off += component.getHeight();
+        }
+        if (isOpened) {
+            settingsOffset = 13 + off;
+        } else {
+            settingsOffset = 13;
+        }
     }
 }

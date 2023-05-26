@@ -6,6 +6,8 @@ import com.vydra.death.screen.modules.Module;
 import com.vydra.death.screen.modules.settings.Setting;
 import org.lwjgl.input.Keyboard;
 
+import java.awt.*;
+
 public class Gui extends Module {
     public Gui(){
         super("Gui", "", Category.CLIENT, Keyboard.KEY_P);
@@ -13,6 +15,7 @@ public class Gui extends Module {
 
     private Setting<Boolean> bebra = new Setting<>("bBe23123123123bra", true, this);
     public Setting<Double> test = new Setting<>("Radius", (double)4, this, 0, 10);
+    public Setting<Color> colorSetting = new Setting<>("ColorSet", Color.YELLOW,this);
 
     @Override
     public void onDisable() {

@@ -30,7 +30,6 @@ public class SliderSettingComponent implements IGuiComponent {
     @Override
     public void onClick(int x, int y, int state) {
         if (GuiUtil.isHoveringOnTheComponent(this, x, y)) {
-            System.out.println("CLICKAAKED");
             if (state == 0) {
                 GuiMain.isDragging = true;
                 setSettingFromX(x);
@@ -55,13 +54,13 @@ public class SliderSettingComponent implements IGuiComponent {
     @Override
     public void onHover(int x, int y) {
         if (GuiUtil.isHoveringOnTheComponent(this, x, y)) {
-            System.out.println("HOVEREDED " + setting.name);
+
         }
     }
 
     @Override
     public void draw() {
-        Render2d.drawGradientRectVertical(
+        Render2d.drawGradientRectHorizontal(
                 new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
                 new Color(0xC9B9166E, true),
                 new Color(0xC95D439C, true)

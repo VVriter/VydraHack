@@ -149,7 +149,40 @@ public class Render2d {
     }
 
 
+    public static void drawHueBar(Rectangle rectangle) {
+        double x = rectangle.getX();
+        double y = rectangle.getY();
+        double w = rectangle.getWidth();
+        double h = rectangle.getHeight();
+        for (int i = 0; i < 360; i++) {
+            Color color = Color.getHSBColor(i / 360f, 0.5f, 0.5f);
+            drawRectangle(new Rectangle((int) (x + (i * w / 360)), (int) y, (int) (w / 360), (int) h), color);
+        }
+    }
 
+
+
+    public static void drawRectangle(Rectangle rectangle, Color color) {
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.glLineWidth(1);
+
+        double x = rectangle.x;
+        double y = rectangle.y;
+        double w = rectangle.width;
+        double h = rectangle.height;
+
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos(x, y + h, 0.0D).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).endVertex();
+        bufferbuilder.pos(x + w, rectangle.y + h, 0.0D).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).endVertex();
+        bufferbuilder.pos(x + w, rectangle.y, 0.0D).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).endVertex();
+        bufferbuilder.pos(x, rectangle.y, 0.0D).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).endVertex();
+        tessellator.draw();
+
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+    }
 
 
 }

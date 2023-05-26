@@ -10,6 +10,7 @@ import com.vydra.death.screen.modules.impl.miscalaneous.ObsidianFiller;
 import com.vydra.death.screen.modules.impl.movement.CornerClip;
 import com.vydra.death.screen.modules.impl.movement.Step;
 import com.vydra.death.screen.modules.impl.render.FullBright;
+import com.vydra.death.screen.modules.impl.render.ItemViewModel;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -29,7 +30,8 @@ public class ModuleManager {
             new BirkaBypass(),
             new ObsidianFiller(),
             new DiscordRPC(),
-            new CornerClip()
+            new CornerClip(),
+            new ItemViewModel()
     };
 
     public void register() {
