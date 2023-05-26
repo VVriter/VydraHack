@@ -154,11 +154,13 @@ public class Render2d {
         double y = rectangle.getY();
         double w = rectangle.getWidth();
         double h = rectangle.getHeight();
-        for (int i = 0; i < 360; i++) {
-            Color color = Color.getHSBColor(i / 360f, 0.5f, 0.5f);
-            drawRectangle(new Rectangle((int) (x + (i * w / 360)), (int) y, (int) (w / 360), (int) h), color);
+        for (int i = 0; i < w; i++) {
+            float hue = (float) i / (float) w;
+            Color color = Color.getHSBColor(hue, 1.0f, 1.0f);
+            drawRectangle(new Rectangle((int) (x + i), (int) y, 1, (int) h), color);
         }
     }
+
 
 
 
