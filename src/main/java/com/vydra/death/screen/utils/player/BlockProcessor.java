@@ -1,9 +1,9 @@
-package com.vydra.death.screen.util.player;
+package com.vydra.death.screen.utils.player;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 
-import static com.vydra.death.screen.util.Render2d.mc;
+import static com.vydra.death.screen.utils.Render2d.mc;
 
 public class BlockProcessor {
 

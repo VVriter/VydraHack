@@ -1,11 +1,9 @@
-package com.vydra.death.screen.util.player;
+package com.vydra.death.screen.utils.player;
 
 import com.vydra.death.screen.mixins.IEntityPlayerSP;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;

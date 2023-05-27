@@ -1,4 +1,4 @@
-package com.vydra.death.screen.manager;
+package com.vydra.death.screen.managers;
 
 import com.vydra.death.screen.events.PacketEvent;
 import com.vydra.death.screen.mixins.ICPacketPlayer;

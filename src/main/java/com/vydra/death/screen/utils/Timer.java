@@ -1,4 +1,4 @@
-package com.vydra.death.screen.util;
+package com.vydra.death.screen.utils;
 
 public class Timer {
     private long time;

@@ -1,14 +1,13 @@
-package com.vydra.death.screen.util.animations;
+package com.vydra.death.screen.utils.animations;
 
-import com.vydra.death.screen.util.Timer;
+import com.vydra.death.screen.utils.Timer;
 
-public class EaseOut implements IAnimation {
-
+public class EaseLeft implements IAnimation {
     private Timer timer;
     private int x;
     private int y;
 
-    public EaseOut() {
+    public EaseLeft() {
         timer = new Timer();
     }
 
@@ -19,9 +18,9 @@ public class EaseOut implements IAnimation {
 
         if (timer.hasPassedMs(delay)) {
             timer.reset();
-            y++;
+            x--;
         }
 
-        return y;
+        return x;
     }
 }

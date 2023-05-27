@@ -1,11 +1,11 @@
 package com.vydra.death.screen;
 
-import com.vydra.death.screen.manager.DiscordRpcManager;
-import com.vydra.death.screen.manager.RotationManager;
+import com.vydra.death.screen.managers.DiscordRpcManager;
+import com.vydra.death.screen.managers.RotationManager;
 import com.vydra.death.screen.modules.ModuleManager;
 import com.vydra.death.screen.modules.settings.SettingManager;
 
-import com.vydra.death.screen.manager.IconTitleManager;
+import com.vydra.death.screen.managers.IconTitleManager;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

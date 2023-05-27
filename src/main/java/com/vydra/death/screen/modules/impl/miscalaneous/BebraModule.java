@@ -2,7 +2,7 @@ package com.vydra.death.screen.modules.impl.miscalaneous;
 
 import com.vydra.death.screen.modules.Category;
 import com.vydra.death.screen.modules.Module;
-import com.vydra.death.screen.util.EspUtil;
+import com.vydra.death.screen.utils.EspUtil;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 

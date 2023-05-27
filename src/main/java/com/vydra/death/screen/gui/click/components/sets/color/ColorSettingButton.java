@@ -3,9 +3,9 @@ package com.vydra.death.screen.gui.click.components.sets.color;
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.settings.Setting;
-import com.vydra.death.screen.util.Render2d;
-import com.vydra.death.screen.util.animations.EaseLeft;
-import com.vydra.death.screen.util.animations.EaseRight;
+import com.vydra.death.screen.utils.Render2d;
+import com.vydra.death.screen.utils.animations.EaseLeft;
+import com.vydra.death.screen.utils.animations.EaseRight;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

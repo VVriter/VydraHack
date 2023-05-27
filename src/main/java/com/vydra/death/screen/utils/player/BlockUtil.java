@@ -1,10 +1,9 @@
-package com.vydra.death.screen.util.player;
+package com.vydra.death.screen.utils.player;
 
 import com.vydra.death.screen.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketEntityAction;
@@ -23,7 +22,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.vydra.death.screen.util.Render2d.mc;
+import static com.vydra.death.screen.utils.Render2d.mc;
 
 public class BlockUtil {
 

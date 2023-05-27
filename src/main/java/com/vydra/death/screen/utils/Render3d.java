@@ -1,8 +1,7 @@
-package com.vydra.death.screen.util;
+package com.vydra.death.screen.utils;
 
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.culling.Frustum;
@@ -10,14 +9,13 @@ import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.Objects;
 
-import static com.vydra.death.screen.util.Render2d.mc;
+import static com.vydra.death.screen.utils.Render2d.mc;
 
 public class Render3d {
     public static ICamera camera = new Frustum();

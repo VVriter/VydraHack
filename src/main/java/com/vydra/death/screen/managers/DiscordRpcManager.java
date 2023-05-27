@@ -1,4 +1,4 @@
-package com.vydra.death.screen.manager;
+package com.vydra.death.screen.managers;
 
 import club.minnced.discord.rpc.DiscordEventHandlers;
 import club.minnced.discord.rpc.DiscordRPC;

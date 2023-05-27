@@ -1,4 +1,4 @@
-package com.vydra.death.screen.manager;
+package com.vydra.death.screen.managers;
 
 import com.vydra.death.screen.Main;
 import org.lwjgl.opengl.Display;

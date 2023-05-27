@@ -1,10 +1,8 @@
-package com.vydra.death.screen.util;
+package com.vydra.death.screen.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import org.lwjgl.opengl.GL11;
-import scala.tools.nsc.typechecker.StdAttachments;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
