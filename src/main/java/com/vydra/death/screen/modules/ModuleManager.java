@@ -3,13 +3,7 @@ package com.vydra.death.screen.modules;
 import com.vydra.death.screen.modules.impl.client.BirkaBypass;
 import com.vydra.death.screen.modules.impl.client.DiscordRPC;
 import com.vydra.death.screen.modules.impl.client.Gui;
-import com.vydra.death.screen.modules.impl.combat.FeetTrap;
-import com.vydra.death.screen.modules.impl.miscalaneous.Freecam;
-import com.vydra.death.screen.modules.impl.miscalaneous.BebraModule;
-import com.vydra.death.screen.modules.impl.miscalaneous.ObsidianFiller;
 import com.vydra.death.screen.modules.impl.movement.CornerClip;
-import com.vydra.death.screen.modules.impl.movement.Step;
-import com.vydra.death.screen.modules.impl.render.Ambience;
 import com.vydra.death.screen.modules.impl.render.FullBright;
 import com.vydra.death.screen.modules.impl.render.ItemViewModel;
 import com.vydra.death.screen.modules.impl.render.NoInterpolation;
@@ -23,15 +17,9 @@ import java.util.stream.Stream;
 public class ModuleManager {
 
     private Module[] modules = {
-            new Ambience(),
-            new BebraModule(),
-            new Freecam(),
             new Gui(),
-            new Step(),
             new FullBright(),
-            new FeetTrap(),
             new BirkaBypass(),
-            new ObsidianFiller(),
             new DiscordRPC(),
             new CornerClip(),
             new ItemViewModel(),
