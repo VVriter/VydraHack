@@ -187,4 +187,84 @@ public class Render2d {
     }
 
 
+    public static void drawVGradientRect(float left, float top, float right, float bottom, int startColor, int endColor) {
+        float f = (float) (startColor >> 24 & 255) / 255.0F;
+        float f1 = (float) (startColor >> 16 & 255) / 255.0F;
+        float f2 = (float) (startColor >> 8 & 255) / 255.0F;
+        float f3 = (float) (startColor & 255) / 255.0F;
+        float f4 = (float) (endColor >> 24 & 255) / 255.0F;
+        float f5 = (float) (endColor >> 16 & 255) / 255.0F;
+        float f6 = (float) (endColor >> 8 & 255) / 255.0F;
+        float f7 = (float) (endColor & 255) / 255.0F;
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.shadeModel(7425);
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos(right, top, 0).color(f1, f2, f3, f).endVertex();
+        bufferbuilder.pos(left, top, 0).color(f1, f2, f3, f).endVertex();
+        bufferbuilder.pos(left, bottom, 0).color(f5, f6, f7, f4).endVertex();
+        bufferbuilder.pos(right, bottom, 0).color(f5, f6, f7, f4).endVertex();
+        tessellator.draw();
+        GlStateManager.shadeModel(7424);
+        GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
+    }
+
+
+
+
+    public static void drawGlow(double x, double y, double x1, double y1, int color) {
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.shadeModel(7425);
+        drawVGradientRect((int) x, (int) y, (int) x1, (int) (y + (y1 - y) / 2f), ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0), color);
+        drawVGradientRect((int) x, (int) (y + (y1 - y) / 2f), (int) x1, (int) y1, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
+        int radius = (int) ((y1 - y) / 2f);
+        drawPolygonPart(x, (y + (y1 - y) / 2f), radius, 0, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
+        drawPolygonPart(x, (y + (y1 - y) / 2f), radius, 1, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
+        drawPolygonPart(x1, (y + (y1 - y) / 2f), radius, 2, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
+        drawPolygonPart(x1, (y + (y1 - y) / 2f), radius, 3, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
+        GlStateManager.shadeModel(7424);
+        GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
+    }
+
+    public static void drawPolygonPart(double x, double y, int radius, int part, int color, int endcolor) {
+        float alpha = (float) (color >> 24 & 255) / 255.0F;
+        float red = (float) (color >> 16 & 255) / 255.0F;
+        float green = (float) (color >> 8 & 255) / 255.0F;
+        float blue = (float) (color & 255) / 255.0F;
+        float alpha1 = (float) (endcolor >> 24 & 255) / 255.0F;
+        float red1 = (float) (endcolor >> 16 & 255) / 255.0F;
+        float green1 = (float) (endcolor >> 8 & 255) / 255.0F;
+        float blue1 = (float) (endcolor & 255) / 255.0F;
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.shadeModel(7425);
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos(x, y, 0).color(red, green, blue, alpha).endVertex();
+        final double TWICE_PI = Math.PI * 2;
+        for (int i = part * 90; i <= part * 90 + 90; i++) {
+            double angle = (TWICE_PI * i / 360) + Math.toRadians(180);
+            bufferbuilder.pos(x + Math.sin(angle) * radius, y + Math.cos(angle) * radius, 0).color(red1, green1, blue1, alpha1).endVertex();
+        }
+        tessellator.draw();
+        GlStateManager.shadeModel(7424);
+        GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
+    }
+
 }

@@ -75,7 +75,6 @@ public class CategoryComponent implements IGuiComponent {
             });
         }
 
-
     }
 
     @Override

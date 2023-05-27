@@ -2,8 +2,10 @@ package com.vydra.death.screen.gui.click;
 
 import com.vydra.death.screen.gui.click.components.CategoryComponent;
 import com.vydra.death.screen.modules.Category;
+import com.vydra.death.screen.util.Render2d;
 import net.minecraft.client.gui.GuiScreen;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

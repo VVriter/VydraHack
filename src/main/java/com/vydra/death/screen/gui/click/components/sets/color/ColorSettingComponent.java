@@ -45,7 +45,7 @@ public class ColorSettingComponent implements IGuiComponent {
         if (GuiUtil.isHoveringOnTheComponent(colorSettingButton, x, y)) {
             isOpened = !isOpened;
             if (isOpened)
-                height = 43;
+                height = 43+13;
             else
                 height = 13;
         }

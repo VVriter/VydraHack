@@ -33,7 +33,7 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            args '--tweakClass', 'org.spongepowered.asm.launch.MixinTweaker', '--mixin', 'mixins.death.json', '--username', 'Segador'
+            args '--tweakClass', 'org.spongepowered.asm.launch.MixinTweaker', '--mixin', 'mixins.death.json', '--username', 'Santera'
         }
     }
 }
