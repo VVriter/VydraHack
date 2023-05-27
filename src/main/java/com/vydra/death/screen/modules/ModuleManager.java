@@ -9,6 +9,7 @@ import com.vydra.death.screen.modules.impl.miscalaneous.BebraModule;
 import com.vydra.death.screen.modules.impl.miscalaneous.ObsidianFiller;
 import com.vydra.death.screen.modules.impl.movement.CornerClip;
 import com.vydra.death.screen.modules.impl.movement.Step;
+import com.vydra.death.screen.modules.impl.render.Ambience;
 import com.vydra.death.screen.modules.impl.render.FullBright;
 import com.vydra.death.screen.modules.impl.render.ItemViewModel;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,6 +22,7 @@ import java.util.stream.Stream;
 public class ModuleManager {
 
     private Module[] modules = {
+            new Ambience(),
             new BebraModule(),
             new Freecam(),
             new Gui(),
