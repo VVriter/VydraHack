@@ -15,7 +15,7 @@ public class Ambience extends Module {
         super("Ambience", "", Category.RENDER);
     }
 
-    public Setting<Color> colorSetting = new Setting<>("ColorSet", new Color(0xF8A04C0, true),this);
+    public Setting<Color> colorSetting = new Setting<>("ColorSet", new Color(0x88A04C0, true),this);
 
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent event) {

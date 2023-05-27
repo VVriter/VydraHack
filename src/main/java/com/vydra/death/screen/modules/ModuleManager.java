@@ -12,6 +12,7 @@ import com.vydra.death.screen.modules.impl.movement.Step;
 import com.vydra.death.screen.modules.impl.render.Ambience;
 import com.vydra.death.screen.modules.impl.render.FullBright;
 import com.vydra.death.screen.modules.impl.render.ItemViewModel;
+import com.vydra.death.screen.modules.impl.render.NoInterpolation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -33,7 +34,8 @@ public class ModuleManager {
             new ObsidianFiller(),
             new DiscordRPC(),
             new CornerClip(),
-            new ItemViewModel()
+            new ItemViewModel(),
+            new NoInterpolation()
     };
 
     public void register() {

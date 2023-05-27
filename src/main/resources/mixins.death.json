@@ -13,6 +13,7 @@
       "ICPacketCustomPayload",
       "MixinEntityPlayerSP",
       "MixinItemRender",
-      "MixinEntityLivingBase"
+      "MixinEntityLivingBase",
+      "MixinEntityOtherPlayerMP"
   ]
 }
