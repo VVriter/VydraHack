@@ -34,22 +34,23 @@ public class Main {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        System.out.println("PRE_INIT!");
         logger = event.getModLog();
 
         settingManager = new SettingManager();
         moduleManager = new ModuleManager();
         moduleManager.register();
 
+        configManager = new ConfigManager();
+        discordRpcManager = new DiscordRpcManager();
+        iconTitleManager = new IconTitleManager();
+        rotationManager = new RotationManager();
+
         try {
             pluginLoader = new PluginLoader();
         } catch (Exception ignored) {
 
         }
-
-        configManager = new ConfigManager();
-        discordRpcManager = new DiscordRpcManager();
-        iconTitleManager = new IconTitleManager();
-        rotationManager = new RotationManager();
     }
 
 }

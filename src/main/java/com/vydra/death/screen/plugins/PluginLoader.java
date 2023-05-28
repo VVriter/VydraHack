@@ -30,9 +30,7 @@ public class PluginLoader {
                 if (jarEntry.isDirectory() || !jarEntry.getName().endsWith(".class")) continue;
                 String className = jarEntry.getName().substring(0, jarEntry.getName().length() - 6).replace('/', '.');
                 Class<?> clazz = classLoader.loadClass(className);
-                if (VydraPlugin.class.isAssignableFrom(clazz)) {
-                    plugins.add((VydraPlugin) clazz.newInstance());
-                }
+
             }
         }
     }
