@@ -62,15 +62,11 @@ public class KeySettingComponent implements IGuiComponent {
 
         Render2d.drawGradientRectVertical(
                 new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
-                new Color(0xC9B9166E, true),
-                new Color(0xC95D439C, true)
+                GuiUtil.baseColor,
+                GuiUtil.secondBaseColor
         );
 
-        Render2d.drawGradientRectHorizontal(
-                new Rectangle((int) x, (int) y, getWidth(), getHeight()),
-                new Color(0xBA4F0B9B, true),
-                new Color(0xC93911A1, true)
-        );
+        Render2d.drawGradientRectHorizontalActiveGui(new Rectangle((int) x, (int) y, getWidth(), getHeight()));
 
 
 
@@ -83,10 +79,8 @@ public class KeySettingComponent implements IGuiComponent {
             hoverAnimationx = easeRight.getValue(hoverAnimationx, y, 5);
         }
 
-        Render2d.drawGradientRectHorizontal(
-                new Rectangle((int) x, (int) y, hoverAnimationx, getHeight()),
-                new Color(0x8C1A0750, true),
-                new Color(0x8C1A0750, true)
+        Render2d.drawGradientRectHorizontalActiveGui(
+                new Rectangle((int) x, (int) y, hoverAnimationx, getHeight())
         );
 
 
@@ -94,10 +88,8 @@ public class KeySettingComponent implements IGuiComponent {
 
 
         if (GuiUtil.isListeningKey && GuiUtil.keyListenedSetting.equals(setting)) {
-            Render2d.drawGradientRectHorizontal(
-                    new Rectangle((int) x, (int) y, hoverAnimationx, getHeight()),
-                    new Color(0x8C1A0750, true),
-                    new Color(0x8C1A0750, true)
+            Render2d.drawGradientRectHorizontalActiveGui(
+                    new Rectangle((int) x, (int) y, hoverAnimationx, getHeight())
             );
             Render2d.drawGradientRectHorizontal(
                     new Rectangle((int) x, (int) y, getWidth(), getHeight()),
@@ -112,9 +104,7 @@ public class KeySettingComponent implements IGuiComponent {
                     new Color(0x8C1A0750, true)
             );
             Render2d.drawGradientRectHorizontal(
-                    new Rectangle((int) x, (int) y, getWidth(), getHeight()),
-                    new Color(0xC95D439C, true),
-                    new Color(0xC9B9166E, true)
+                    new Rectangle((int) x, (int) y, getWidth(), getHeight())
             );
             drawStringCustom(setting.name, (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
 

@@ -58,9 +58,7 @@ public class ColorSettingButton implements IGuiComponent {
 
 
         Render2d.drawGradientRectHorizontal(
-                new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
-                new Color(0xC9B9166E, true),
-                new Color(0xC95D439C, true)
+                new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2)
         );
 
 

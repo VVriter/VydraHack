@@ -49,6 +49,10 @@ public class Setting<T> {
             this.mode = Mode.MODE;
         }
 
+        if (value instanceof DoubleValueSetting) {
+            this.mode = Mode.DOUBLEVALUESETTING;
+        }
+
         settingManager.settings.add(this);
     }
 
@@ -75,6 +79,8 @@ public class Setting<T> {
 
         settingManager.settings.add(this);
     }
+
+
 
     public void setValue(T newValue){
         this.value = newValue;
@@ -119,6 +125,6 @@ public class Setting<T> {
     }
 
     public enum Mode{
-        BOOL, NUMBER, MODE, KEY, COLOR, SUB
+        BOOL, NUMBER, MODE, KEY, COLOR, SUB, DOUBLEVALUESETTING
     }
 }

@@ -65,9 +65,7 @@ public class ColorSettingHueBar implements IGuiComponent {
     @Override
     public void draw() {
         Render2d.drawGradientRectHorizontal(
-                new Rectangle(x - 1, y - 1, getWidth() + 2, getHeight() + 2),
-                new Color(0xC9B9166E, true),
-                new Color(0xC95D439C, true)
+                new Rectangle(x - 1, y - 1, getWidth() + 2, getHeight() + 2)
         );
 
 

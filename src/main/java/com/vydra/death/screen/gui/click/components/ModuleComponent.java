@@ -7,6 +7,7 @@ import com.vydra.death.screen.gui.click.components.sets.BooleanSettingComponent;
 import com.vydra.death.screen.gui.click.components.sets.KeySettingComponent;
 import com.vydra.death.screen.gui.click.components.sets.SliderSettingComponent;
 import com.vydra.death.screen.gui.click.components.sets.color.ColorSettingComponent;
+import com.vydra.death.screen.gui.click.components.sets.doubles.DoubleValueSettingComponent;
 import com.vydra.death.screen.modules.Module;
 import java.awt.*;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class ModuleComponent implements IGuiComponent {
 
         Main.settingManager.modulesSettings(module).forEach(setting -> {
             switch (setting.mode) {
+
                 case BOOL: {
                     settings.add(new BooleanSettingComponent(setting, x, y));
                     break;
@@ -54,6 +56,12 @@ public class ModuleComponent implements IGuiComponent {
                     settings.add(new ColorSettingComponent(setting, x, y));
                     break;
                 }
+
+                case DOUBLEVALUESETTING: {
+                    settings.add(new DoubleValueSettingComponent(setting, x, y));
+                    break;
+                }
+
             }
         });
     }

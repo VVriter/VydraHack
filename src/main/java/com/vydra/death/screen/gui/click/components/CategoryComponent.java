@@ -51,16 +51,9 @@ public class CategoryComponent implements IGuiComponent {
 
 
         //Drawin category shit
-        Render2d.drawGradientRectHorizontal(
-                new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
-                new Color(0xC9B9166E, true),
-                new Color(0xC95D439C, true)
-        );
-        Render2d.drawGradientRectHorizontal(
-                new Rectangle((int) x, (int) y, getWidth(), getHeight()),
-                new Color(0xC95D439C, true),
-                new Color(0xC9B9166E, true)
-        );
+        Render2d.drawGradientRectHorizontal(new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2));
+        Render2d.drawGradientRectHorizontal(new Rectangle((int) x, (int) y, getWidth(), getHeight()));
+
         mc.getRenderItem().renderItemAndEffectIntoGUI(category.getItemStack(), (int) x, (int) y);
         mc.fontRenderer.drawString(category.name(), (int) x+20, (int) y+5, Color.white.getRGB());
 
