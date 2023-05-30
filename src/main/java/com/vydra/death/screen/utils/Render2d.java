@@ -295,26 +295,26 @@ public class Render2d {
 
 
 
-    public static void drawGlow(double x, double y, double x1, double y1, int color) {
+    public static void drawGlow(Point2D.Double one, Point2D.Double two, int color) {
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.shadeModel(7425);
-        drawVGradientRect((int) x, (int) y, (int) x1, (int) (y + (y1 - y) / 2f), ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0), color);
-        drawVGradientRect((int) x, (int) (y + (y1 - y) / 2f), (int) x1, (int) y1, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
-        int radius = (int) ((y1 - y) / 2f);
-        drawPolygonPart(x, (y + (y1 - y) / 2f), radius, 0, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
-        drawPolygonPart(x, (y + (y1 - y) / 2f), radius, 1, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
-        drawPolygonPart(x1, (y + (y1 - y) / 2f), radius, 2, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
-        drawPolygonPart(x1, (y + (y1 - y) / 2f), radius, 3, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
+        drawVGradientRect((int) one.getX(), (int) one.getY(), (int) two.getX(), (int) (one.getY() + (two.getY() - one.getY()) / 2f), ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0), color);
+        drawVGradientRect((int) one.getX(), (int) (one.getY() + (two.getY() - one.getY()) / 2f), (int) two.getX(), (int) two.getY(), color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
+        int radius = (int) ((two.getY() - one.getY()) / 2f);
+        drawPolygonPart(new Point2D.Double(one.getX(), (one.getY() + (two.getY() - one.getY()) / 2f)), radius, 0, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
+        drawPolygonPart(new Point2D.Double(one.getX(), (one.getY() + (two.getY() - one.getY()) / 2f)), radius, 1, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
+        drawPolygonPart(new Point2D.Double(two.getX(), (one.getY() + (two.getY() - one.getY()) / 2f)), radius, 2, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
+        drawPolygonPart(new Point2D.Double(two.getX(), (one.getY() + (two.getY() - one.getY()) / 2f)), radius, 3, color, ColorUtil.toRGBA(new Color(color).getRed(), new Color(color).getGreen(), new Color(color).getBlue(), 0));
         GlStateManager.shadeModel(7424);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
         GlStateManager.enableTexture2D();
     }
 
-    public static void drawPolygonPart(double x, double y, int radius, int part, int color, int endcolor) {
+    public static void drawPolygonPart(Point2D.Double point, int radius, int part, int color, int endcolor) {
         float alpha = (float) (color >> 24 & 255) / 255.0F;
         float red = (float) (color >> 16 & 255) / 255.0F;
         float green = (float) (color >> 8 & 255) / 255.0F;
@@ -331,17 +331,33 @@ public class Render2d {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();
         bufferbuilder.begin(GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
-        bufferbuilder.pos(x, y, 0).color(red, green, blue, alpha).endVertex();
+        bufferbuilder.pos(point.getX(), point.getY(), 0).color(red, green, blue, alpha).endVertex();
         final double TWICE_PI = Math.PI * 2;
         for (int i = part * 90; i <= part * 90 + 90; i++) {
             double angle = (TWICE_PI * i / 360) + Math.toRadians(180);
-            bufferbuilder.pos(x + Math.sin(angle) * radius, y + Math.cos(angle) * radius, 0).color(red1, green1, blue1, alpha1).endVertex();
+            bufferbuilder.pos(point.getX() + Math.sin(angle) * radius, point.getY() + Math.cos(angle) * radius, 0).color(red1, green1, blue1, alpha1).endVertex();
         }
         tessellator.draw();
         GlStateManager.shadeModel(7424);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
         GlStateManager.enableTexture2D();
+    }
+
+    public static void drawTriangle(Point2D.Double one, Point2D.Double two, Point2D.Double three, Color color) {
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.glLineWidth(1);
+
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos(one.getX(), one.getY(), 0.0D).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).endVertex();
+        bufferbuilder.pos(two.getX(), two.getY(), 0.0D).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).endVertex();
+        bufferbuilder.pos(three.getX(), three.getY(), 0.0D).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).endVertex();
+        tessellator.draw();
+
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
     }
 
 }
