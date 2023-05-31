@@ -30,6 +30,8 @@ public class SliderSetting extends Setting {
         this.name = builder.name;
         this.module = builder.module;
         this.description = builder.description;
+        this.min = builder.min;
+        this.max = builder.max;
         this.value = builder.value;
         Main.settingManager.settings.add(this);
     }
