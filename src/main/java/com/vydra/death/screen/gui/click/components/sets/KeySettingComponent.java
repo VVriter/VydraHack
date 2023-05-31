@@ -3,6 +3,8 @@ package com.vydra.death.screen.gui.click.components.sets;
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.settings.Setting;
+import com.vydra.death.screen.modules.settings.types.BooleanSetting;
+import com.vydra.death.screen.modules.settings.types.KeyBindSetting;
 import com.vydra.death.screen.utils.Render2d;
 import com.vydra.death.screen.utils.animations.EaseLeft;
 import com.vydra.death.screen.utils.animations.EaseRight;
@@ -106,15 +108,14 @@ public class KeySettingComponent implements IGuiComponent {
             Render2d.drawGradientRectHorizontal(
                     new Rectangle((int) x, (int) y, getWidth(), getHeight())
             );
-            drawStringCustom(setting.name, (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+            drawStringCustom(setting.getName(), (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
 
-
-            String keyname = Keyboard.getKeyName((Integer) setting.getValue());
+           String keyname = Keyboard.getKeyName( ((KeyBindSetting)setting).getValue() );
 
             if (Objects.equals(keyname, "NONE")) {
-                drawStringCustom(Keyboard.getKeyName((Integer) setting.getValue()),(int) x+getWidth()-24, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+                drawStringCustom(Keyboard.getKeyName(((KeyBindSetting)setting).getValue()),(int) x+getWidth()-24, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
             } else {
-                drawStringCustom(Keyboard.getKeyName((Integer) setting.getValue()),(int) x+getWidth()-6, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+                drawStringCustom(Keyboard.getKeyName(((KeyBindSetting)setting).getValue()),(int) x+getWidth()-6, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
             }
 
         }
@@ -129,12 +130,12 @@ public class KeySettingComponent implements IGuiComponent {
         IGuiComponent.super.onKeyTyped(keycode);
         if (GuiUtil.isListeningKey && GuiUtil.keyListenedSetting.equals(setting)) {
             if (keycode == Keyboard.KEY_DELETE) {
-                setting.setValue(Keyboard.KEY_NONE);
+                ((KeyBindSetting)setting).setValue(Keyboard.KEY_NONE);
                 GuiUtil.isListeningKey = false;
                 GuiUtil.keyListenedSetting = null;
                 return;
             }
-            setting.setValue(keycode);
+            ((KeyBindSetting)setting).setValue(keycode);
             GuiUtil.isListeningKey = false;
             GuiUtil.keyListenedSetting = null;
         }

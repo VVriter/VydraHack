@@ -8,7 +8,7 @@ public class NoInterpolation extends Module {
     public static NoInterpolation INSTANCE;
 
     public NoInterpolation() {
-        super("NoInterpolation", "", Category.RENDER);
+        super("NoInterpolation", "Removes entity interpolation", Category.RENDER);
         INSTANCE = this;
     }
 }

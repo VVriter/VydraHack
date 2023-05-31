@@ -4,6 +4,7 @@ import com.vydra.death.screen.gui.click.GuiMain;
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.settings.Setting;
+import com.vydra.death.screen.modules.settings.types.ColorSetting;
 import com.vydra.death.screen.utils.Render2d;
 
 import java.awt.*;
@@ -14,12 +15,12 @@ public class ColorSettingHueBar implements IGuiComponent {
 
 
 
-    private Setting<Color> setting;
+    private Setting setting;
     private int x;
     private int y;
     private int difference = 360;
 
-    public ColorSettingHueBar(Setting<Color> setting, int x, int y) {
+    public ColorSettingHueBar(Setting setting, int x, int y) {
         this.setting = setting;
         this.x = x;
         this.y = y;
@@ -41,10 +42,10 @@ public class ColorSettingHueBar implements IGuiComponent {
                 double percent = ((float) x - (this.x + 3)) / ((float) this.getWidth() - 6);
                 float result = (float) (0 + this.difference * percent);
 
-                float[] hsb = Color.RGBtoHSB(setting.getValue().getRed(), setting.getValue().getGreen(), setting.getValue().getBlue(), null);
+                float[] hsb = Color.RGBtoHSB(((ColorSetting)setting).getValue().getRed(), ((ColorSetting)setting).getValue().getGreen(), ((ColorSetting)setting).getValue().getBlue(), null);
                 float saturation = hsb[1];
                 float brightness = hsb[2];
-                float alpha = setting.getValue().getAlpha() / 255f;
+                float alpha = ((ColorSetting)setting).getValue().getAlpha() / 255f;
 
                 Color newColor = Color.getHSBColor(result / difference, saturation, brightness);
                 int red = newColor.getRed();
@@ -52,7 +53,7 @@ public class ColorSettingHueBar implements IGuiComponent {
                 int blue = newColor.getBlue();
                 int alphaInt = (int) (alpha * 255);
 
-                this.setting.setValue(new Color(red, green, blue, alphaInt));
+                ((ColorSetting)setting).setValue(new Color(red, green, blue, alphaInt));
             }
         }
     }
@@ -75,7 +76,7 @@ public class ColorSettingHueBar implements IGuiComponent {
 
 
     private float getHue() {
-        float[] hsb = Color.RGBtoHSB(setting.getValue().getRed(), setting.getValue().getGreen(), setting.getValue().getBlue(), null);
+        float[] hsb = Color.RGBtoHSB(((ColorSetting)setting).getValue().getRed(), ((ColorSetting)setting).getValue().getGreen(), ((ColorSetting)setting).getValue().getBlue(), null);
         return hsb[0] * difference;
     }
 

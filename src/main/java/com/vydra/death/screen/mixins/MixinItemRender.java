@@ -16,18 +16,18 @@ public class MixinItemRender {
 
     @Inject(method = "renderItemSide", at = @At("HEAD"))
     public void renderItemSide(EntityLivingBase entitylivingbaseIn, ItemStack heldStack, ItemCameraTransforms.TransformType transform, boolean leftHanded, CallbackInfo ci) {
-        if (ItemViewModel.INSTANCE.isEnabled) {
-            GlStateManager.scale(ItemViewModel.sx.getValue() / 100F, ItemViewModel.sy.getValue() / 100F, ItemViewModel.sz.getValue() / 100F);
+        if (ItemViewModel.INSTANCE.INSTANCE.isEnabled) {
+            GlStateManager.scale(ItemViewModel.INSTANCE.INSTANCE.sx.getValue() / 100F, ItemViewModel.INSTANCE.sy.getValue() / 100F, ItemViewModel.INSTANCE.sz.getValue() / 100F);
             if (transform == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND) {
-                GlStateManager.translate(ItemViewModel.tx.getValue() / 100F, ItemViewModel.ty.getValue() / 100F, ItemViewModel.tz.getValue() / 100F);
-                GlStateManager.rotate(ItemViewModel.rx.getValue().floatValue(), 1, 0, 0);
-                GlStateManager.rotate(ItemViewModel.ry.getValue().floatValue(), 0, 1, 0);
-                GlStateManager.rotate(ItemViewModel.rz.getValue().floatValue(), 0, 0, 1);
+                GlStateManager.translate(ItemViewModel.INSTANCE.tx.getValue() / 100F, ItemViewModel.INSTANCE.ty.getValue() / 100F, ItemViewModel.INSTANCE.tz.getValue() / 100F);
+                GlStateManager.rotate((float) ItemViewModel.INSTANCE.rx.getValue(), 1, 0, 0);
+                GlStateManager.rotate((float) ItemViewModel.INSTANCE.ry.getValue(), 0, 1, 0);
+                GlStateManager.rotate((float) ItemViewModel.INSTANCE.rz.getValue(), 0, 0, 1);
             } else if (transform == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND) {
-                GlStateManager.translate(-ItemViewModel.tx.getValue() / 100F, ItemViewModel.ty.getValue() / 100F, ItemViewModel.tz.getValue() / 100F);
-                GlStateManager.rotate(-ItemViewModel.rx.getValue().floatValue(), 1, 0, 0);
-                GlStateManager.rotate(ItemViewModel.ry.getValue().floatValue(), 0, 1, 0);
-                GlStateManager.rotate(ItemViewModel.rz.getValue().floatValue(), 0, 0, 1);
+                GlStateManager.translate(-ItemViewModel.INSTANCE.tx.getValue() / 100F, ItemViewModel.INSTANCE.ty.getValue() / 100F, ItemViewModel.INSTANCE.tz.getValue() / 100F);
+                GlStateManager.rotate((float) -ItemViewModel.INSTANCE.rx.getValue(), 1, 0, 0);
+                GlStateManager.rotate((float) ItemViewModel.INSTANCE.ry.getValue(), 0, 1, 0);
+                GlStateManager.rotate((float) ItemViewModel.INSTANCE.rz.getValue(), 0, 0, 1);
             }
         }
     }

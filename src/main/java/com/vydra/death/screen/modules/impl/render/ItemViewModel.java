@@ -2,45 +2,97 @@ package com.vydra.death.screen.modules.impl.render;
 
 import com.vydra.death.screen.modules.Category;
 import com.vydra.death.screen.modules.Module;
-import com.vydra.death.screen.modules.settings.Setting;
+import com.vydra.death.screen.modules.settings.types.SliderSetting;
 
 public class ItemViewModel extends Module {
 
     public static ItemViewModel INSTANCE;
 
-    public static Setting<Double> swingSpeed;
+    public SliderSetting swingSpeed = new SliderSetting.Builder()
+            .withName("Swing speed")
+            .withModule(this)
+            .min(1)
+            .max(40)
+            .withDefaultValue(20)
+            .build();
 
-    public static Setting<Double> tx;
-    public static Setting<Double> ty;
-    public static Setting<Double> tz;
+    public SliderSetting tx = new SliderSetting.Builder()
+            .withName("Translate X")
+            .withModule(this)
+            .min(-300)
+            .max(300)
+            .withDefaultValue(0)
+            .build();
 
-    public static Setting<Double> rx;
-    public static Setting<Double> ry;
-    public static Setting<Double> rz;
+    public SliderSetting ty = new SliderSetting.Builder()
+            .withName("Translate Y")
+            .withModule(this)
+            .min(-300)
+            .max(300)
+            .withDefaultValue(0)
+            .build();
 
-    public static Setting<Double> sx;
-    public static Setting<Double> sy;
-    public static Setting<Double> sz;
+    public SliderSetting tz = new SliderSetting.Builder()
+            .withName("Translate Z")
+            .withModule(this)
+            .min(-300)
+            .max(300)
+            .withDefaultValue(0)
+            .build();
+
+    public SliderSetting rx = new SliderSetting.Builder()
+            .withName("Rotate X")
+            .withModule(this)
+            .min(-300)
+            .max(300)
+            .withDefaultValue(0)
+            .build();
+
+    public SliderSetting ry = new SliderSetting.Builder()
+            .withName("Rotate Y")
+            .withModule(this)
+            .min(-300)
+            .max(300)
+            .withDefaultValue(0)
+            .build();
+
+    public SliderSetting rz = new SliderSetting.Builder()
+            .withName("Rotate Z")
+            .withModule(this)
+            .min(-300)
+            .max(300)
+            .withDefaultValue(0)
+            .build();
+
+    public SliderSetting sx = new SliderSetting.Builder()
+            .withName("Scale X")
+            .withModule(this)
+            .min(0)
+            .max(300)
+            .withDefaultValue(100)
+            .build();
+
+    public SliderSetting sy = new SliderSetting.Builder()
+            .withName("Scale Y")
+            .withModule(this)
+            .min(0)
+            .max(300)
+            .withDefaultValue(100)
+            .build();
+
+    public SliderSetting sz = new SliderSetting.Builder()
+            .withName("Scale Z")
+            .withModule(this)
+            .min(0)
+            .max(300)
+            .withDefaultValue(100)
+            .build();
 
 
 
     public ItemViewModel() {
         super("ItemViewModel", "", Category.RENDER);
         INSTANCE = this;
-
-        swingSpeed =  new Setting<>("Swing speed", (double)20, this, 1, 40);
-
-        tx = new Setting<>("Translate X", (double)0, this, -300, 300);
-        ty = new Setting<>("Translate Y", (double)0, this, -300, 300);
-        tz = new Setting<>("Translate Z", (double)0, this, -300, 300);
-
-        rx = new Setting<>("Rotate X", (double)0, this, 0, 300);
-        ry = new Setting<>("Rotate Y", (double)0, this, 0, 300);
-        rz = new Setting<>("Rotate Z", (double)0, this, 0, 300);
-
-        sx = new Setting<>("Scale X", (double)100, this, 0, 300);
-        sy = new Setting<>("Scale Y", (double)100, this, 0, 300);
-        sz = new Setting<>("Scale Z", (double)100, this, 0, 300);
     }
 
 

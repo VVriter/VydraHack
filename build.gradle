@@ -85,6 +85,9 @@ dependencies {
 
     jarLibs('club.minnced:java-discord-rpc:2.0.1')
 
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+
     implementation configurations.jarLibs
 }
 

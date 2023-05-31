@@ -7,12 +7,23 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 
 public class FullBright extends Module {
-    public FullBright() {
-         super("FullBright", "s", Category.RENDER, Keyboard.KEY_NONE);
-     }
 
-    @SubscribeEvent
-    public void onTick(TickEvent.ClientTickEvent event) {
+    public FullBright() {
+        super("FullBright", "s", Category.RENDER);
+    }
+
+    float oldGamma;
+
+    @Override
+    public void onEnable() {
+        super.onEnable();
+        oldGamma = mc.gameSettings.gammaSetting;
         mc.gameSettings.gammaSetting = 10000f;
+    }
+
+    @Override
+    public void onDisable() {
+        super.onDisable();
+        mc.gameSettings.gammaSetting = oldGamma;
     }
 }

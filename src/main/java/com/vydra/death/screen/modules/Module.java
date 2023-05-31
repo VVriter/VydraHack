@@ -1,6 +1,6 @@
 package com.vydra.death.screen.modules;
 
-import com.vydra.death.screen.modules.settings.Setting;
+import com.vydra.death.screen.modules.settings.types.KeyBindSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
@@ -15,7 +15,12 @@ public class Module {
     private int key = 1;
     public boolean isEnabled = false;
 
-    public Setting<Integer> keySetting = new Setting<>("Key", Keyboard.KEY_NONE, this);
+    public KeyBindSetting keySetting = new KeyBindSetting.Builder()
+            .withDefaultValue(Keyboard.KEY_NONE)
+            .withModule(this)
+            .withDescription(this.getName() + " module keybind")
+            .withName("Key")
+            .build();
 
     public Module(String name, String description, Category category) {
         this.name = name;

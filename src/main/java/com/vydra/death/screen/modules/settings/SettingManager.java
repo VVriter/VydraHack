@@ -13,14 +13,14 @@ public class SettingManager {
 
     public Setting getSetting(Module module, String name){
         for(Setting setting : modulesSettings(module))
-            if(setting.name == name)
+            if(setting.getName() == name)
                 return setting;
         return null;
     }
 
     public Setting getSettingByName(String name){
         for(Setting setting : settings)
-            if(setting.name == name)
+            if(setting.getName() == name)
                 return setting;
         return null;
     }
@@ -28,7 +28,7 @@ public class SettingManager {
     public ArrayList<Setting> modulesSettings(Module module){
         ArrayList<Setting> settings = new ArrayList<>();
         for(Setting setting : this.settings){
-            if(setting.module.getName() == module.getName())
+            if(setting.getModule().getName() == module.getName())
                 settings.add(setting);
         }
         return settings;
@@ -37,7 +37,7 @@ public class SettingManager {
     public ArrayList<String> settingsNames(){
         ArrayList<String> names = new ArrayList<>();
         for(Setting setting : this.settings){
-            names.add(setting.name);
+            names.add(setting.getName());
         }
         return names;
     }
@@ -45,7 +45,7 @@ public class SettingManager {
     public ArrayList<String> settingsNames(Module module){
         ArrayList<String> names = new ArrayList<>();
         for(Setting setting : this.modulesSettings(module)){
-            names.add(setting.name);
+            names.add(setting.getName());
         }
         return names;
     }

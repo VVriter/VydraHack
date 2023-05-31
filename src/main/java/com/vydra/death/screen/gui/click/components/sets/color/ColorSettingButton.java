@@ -3,6 +3,7 @@ package com.vydra.death.screen.gui.click.components.sets.color;
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.settings.Setting;
+import com.vydra.death.screen.modules.settings.types.ColorSetting;
 import com.vydra.death.screen.utils.Render2d;
 import com.vydra.death.screen.utils.animations.EaseLeft;
 import com.vydra.death.screen.utils.animations.EaseRight;
@@ -77,8 +78,8 @@ public class ColorSettingButton implements IGuiComponent {
         );
 
 
-        drawStringCustom(setting.name, (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
-        Render2d.drawFilledCircle(new Point2D.Double(x + getWidth() - 10, y+6),(Color) setting.getValue(), 4);
+        drawStringCustom(setting.getName(), (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+        Render2d.drawFilledCircle(new Point2D.Double(x + getWidth() - 10, y+6),((ColorSetting)setting).getValue(), 4);
 
         isHovering = false;
     }

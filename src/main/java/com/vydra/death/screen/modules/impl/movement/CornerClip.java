@@ -3,7 +3,7 @@ package com.vydra.death.screen.modules.impl.movement;
 import com.vydra.death.screen.events.UpdateWalkingPlayerEvent;
 import com.vydra.death.screen.modules.Category;
 import com.vydra.death.screen.modules.Module;
-import com.vydra.death.screen.modules.settings.Setting;
+import com.vydra.death.screen.modules.settings.types.SliderSetting;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -11,7 +11,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class CornerClip extends Module {
     public CornerClip() {super("CornerClip", "", Category.MOVEMENT, 0x00);}
 
-    public Setting<Double> timeout = new Setting<>("Timout", (double)5, this, 1, 10);
+    private SliderSetting timeout = new SliderSetting.Builder()
+            .withName("Timeout")
+            .withModule(this)
+            .withDescription("Timeout idk lol")
+            .min(1)
+            .max(10)
+            .withDefaultValue(5)
+            .build();
 
     private boolean isPlayerMoving() {
         return mc.gameSettings.keyBindForward.isKeyDown() || mc.gameSettings.keyBindBack.isKeyDown() || mc.gameSettings.keyBindRight.isKeyDown() || mc.gameSettings.keyBindLeft.isKeyDown();

@@ -13,7 +13,7 @@ public class MixinEntityLivingBase {
     @Inject(method={"getArmSwingAnimationEnd"}, at={@At(value="HEAD")}, cancellable=true)
     private void getArmSwingAnimationEnd(CallbackInfoReturnable<Integer> info) {
         if (ItemViewModel.INSTANCE.isEnabled) {
-            info.setReturnValue(ItemViewModel.swingSpeed.getValue().intValue());
+            info.setReturnValue((int) ItemViewModel.INSTANCE.swingSpeed.getValue());
         }
     }
 

@@ -3,6 +3,7 @@ package com.vydra.death.screen.gui.click.components.sets;
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.settings.Setting;
+import com.vydra.death.screen.modules.settings.types.BooleanSetting;
 import com.vydra.death.screen.utils.Render2d;
 import com.vydra.death.screen.utils.animations.EaseLeft;
 import com.vydra.death.screen.utils.animations.EaseRight;
@@ -40,7 +41,7 @@ public class BooleanSettingComponent implements IGuiComponent {
     @Override
     public void onClick(int x, int y, int state) {
         if (state == 0) {
-            setting.setValue(!(boolean)setting.getValue());
+            ((BooleanSetting)setting).setValue(!((BooleanSetting)setting).isValue());
         }
     }
 
@@ -61,7 +62,7 @@ public class BooleanSettingComponent implements IGuiComponent {
         Render2d.drawGradientRectHorizontal(new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2));
 
 
-        if ((boolean)setting.getValue()) {
+        if (((BooleanSetting)setting).isValue()) {
             Render2d.drawGradientRectHorizontalActiveGui(new Rectangle((int) x, (int) y, getWidth(), getHeight()));
         } else {
             Render2d.drawGradientRectHorizontal(new Rectangle((int) x, (int) y, getWidth(), getHeight()));
@@ -81,7 +82,7 @@ public class BooleanSettingComponent implements IGuiComponent {
                 new Color(0x8C1A0750, true)
         );
 
-        drawStringCustom(setting.name, (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
+        drawStringCustom(setting.getName(), (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
 
         isHovering = false;
     }
