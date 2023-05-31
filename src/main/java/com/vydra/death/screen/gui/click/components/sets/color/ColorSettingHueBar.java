@@ -3,6 +3,7 @@ package com.vydra.death.screen.gui.click.components.sets.color;
 import com.vydra.death.screen.gui.click.GuiMain;
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
+import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.settings.Setting;
 import com.vydra.death.screen.modules.settings.types.ColorSetting;
 import com.vydra.death.screen.utils.Render2d;
@@ -66,7 +67,9 @@ public class ColorSettingHueBar implements IGuiComponent {
     @Override
     public void draw() {
         Render2d.drawGradientRectHorizontal(
-                new Rectangle(x - 1, y - 1, getWidth() + 2, getHeight() + 2)
+                new Rectangle(x - 1, y - 1, getWidth() + 2, getHeight() + 2),
+                Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
+                Gui.getInstance().baseButtonOutlineColorSecond.getValue()
         );
 
 

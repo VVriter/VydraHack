@@ -3,6 +3,7 @@ package com.vydra.death.screen.gui.click.components.sets;
 import com.vydra.death.screen.gui.click.GuiMain;
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
+import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.settings.Setting;
 import com.vydra.death.screen.modules.settings.types.SliderSetting;
 import com.vydra.death.screen.utils.Render2d;
@@ -55,10 +56,18 @@ public class SliderSettingComponent implements IGuiComponent {
 
     @Override
     public void draw() {
-        Render2d.drawGradientRectHorizontal(new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2));
+        Render2d.drawGradientRectHorizontal(
+                new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
+                Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
+                Gui.getInstance().baseButtonOutlineColorSecond.getValue()
+        );
 
 
-        Render2d.drawGradientRectHorizontalActiveGui(new Rectangle((int) x, (int) y, (int) ((int) (getWidth() - 4) * (Double.parseDouble(String.valueOf(((SliderSetting)setting).getValue())) - ((SliderSetting)setting).getMin()) / difference), getHeight()));
+        Render2d.drawGradientRectHorizontal(
+                new Rectangle((int) x, (int) y, (int) ((int) (getWidth() - 4) * (Double.parseDouble(String.valueOf(((SliderSetting)setting).getValue())) - ((SliderSetting)setting).getMin()) / difference), getHeight()),
+                Gui.getInstance().baseButtonColorFirst.getValue(),
+                Gui.getInstance().baseButtonColorSecond.getValue()
+        );
 
 
         //Rendering module name

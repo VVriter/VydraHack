@@ -15,9 +15,7 @@ public class KeyBindSetting extends Setting {
     @Getter
     private String description;
 
-    @Getter
-    @Setter
-    private int value;
+    @Getter @Setter private int value;
 
 
     public KeyBindSetting(Builder builder) {

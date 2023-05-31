@@ -8,7 +8,7 @@ public enum Category {
     MOVEMENT(new ItemStack(Items.ELYTRA)),
     RENDER(new ItemStack(Items.DIAMOND)),
     EXPLOITS(new ItemStack(Items.ENDER_PEARL)),
-    MISCALANEOUS(new ItemStack(Items.APPLE)),
+    MISCELLANEOUS(new ItemStack(Items.APPLE)),
     CLIENT(new ItemStack(Items.EXPERIENCE_BOTTLE));
 
 

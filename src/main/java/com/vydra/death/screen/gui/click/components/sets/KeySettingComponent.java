@@ -2,6 +2,7 @@ package com.vydra.death.screen.gui.click.components.sets;
 
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
+import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.settings.Setting;
 import com.vydra.death.screen.modules.settings.types.BooleanSetting;
 import com.vydra.death.screen.modules.settings.types.KeyBindSetting;
@@ -64,11 +65,15 @@ public class KeySettingComponent implements IGuiComponent {
 
         Render2d.drawGradientRectVertical(
                 new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
-                GuiUtil.baseColor,
-                GuiUtil.secondBaseColor
+                Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
+                Gui.getInstance().baseButtonOutlineColorSecond.getValue()
         );
 
-        Render2d.drawGradientRectHorizontalActiveGui(new Rectangle((int) x, (int) y, getWidth(), getHeight()));
+        Render2d.drawGradientRectHorizontal(
+                new Rectangle((int) x, (int) y, getWidth(), getHeight()),
+                Gui.getInstance().baseButtonColorFirst.getValue(),
+                Gui.getInstance().baseButtonColorSecond.getValue()
+        );
 
 
 
@@ -81,8 +86,10 @@ public class KeySettingComponent implements IGuiComponent {
             hoverAnimationx = easeRight.getValue(hoverAnimationx, y, 5);
         }
 
-        Render2d.drawGradientRectHorizontalActiveGui(
-                new Rectangle((int) x, (int) y, hoverAnimationx, getHeight())
+        Render2d.drawGradientRectHorizontal(
+                new Rectangle((int) x, (int) y, hoverAnimationx, getHeight()),
+                Gui.getInstance().baseButtonColorFirst.getValue(),
+                Gui.getInstance().baseButtonColorSecond.getValue()
         );
 
 
@@ -90,8 +97,10 @@ public class KeySettingComponent implements IGuiComponent {
 
 
         if (GuiUtil.isListeningKey && GuiUtil.keyListenedSetting.equals(setting)) {
-            Render2d.drawGradientRectHorizontalActiveGui(
-                    new Rectangle((int) x, (int) y, hoverAnimationx, getHeight())
+            Render2d.drawGradientRectHorizontal(
+                    new Rectangle((int) x, (int) y, hoverAnimationx, getHeight()),
+                    Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
+                    Gui.getInstance().baseButtonOutlineColorSecond.getValue()
             );
             Render2d.drawGradientRectHorizontal(
                     new Rectangle((int) x, (int) y, getWidth(), getHeight()),
@@ -106,7 +115,9 @@ public class KeySettingComponent implements IGuiComponent {
                     new Color(0x8C1A0750, true)
             );
             Render2d.drawGradientRectHorizontal(
-                    new Rectangle((int) x, (int) y, getWidth(), getHeight())
+                    new Rectangle((int) x, (int) y, getWidth(), getHeight()),
+                    Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
+                    Gui.getInstance().baseButtonOutlineColorSecond.getValue()
             );
             drawStringCustom(setting.getName(), (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
 

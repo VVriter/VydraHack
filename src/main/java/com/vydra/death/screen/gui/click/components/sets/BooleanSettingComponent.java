@@ -2,6 +2,7 @@ package com.vydra.death.screen.gui.click.components.sets;
 
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
+import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.settings.Setting;
 import com.vydra.death.screen.modules.settings.types.BooleanSetting;
 import com.vydra.death.screen.utils.Render2d;
@@ -59,13 +60,26 @@ public class BooleanSettingComponent implements IGuiComponent {
 
     @Override
     public void draw() {
-        Render2d.drawGradientRectHorizontal(new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2));
+        Render2d.drawGradientRectHorizontal(
+                new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
+                Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
+                Gui.getInstance().baseButtonOutlineColorSecond.getValue()
+        );
+
 
 
         if (((BooleanSetting)setting).isValue()) {
-            Render2d.drawGradientRectHorizontalActiveGui(new Rectangle((int) x, (int) y, getWidth(), getHeight()));
+            Render2d.drawGradientRectHorizontal(
+                    new Rectangle((int) x, (int) y, getWidth(), getHeight()),
+                    Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
+                    Gui.getInstance().baseButtonOutlineColorSecond.getValue()
+            );
         } else {
-            Render2d.drawGradientRectHorizontal(new Rectangle((int) x, (int) y, getWidth(), getHeight()));
+            Render2d.drawGradientRectHorizontal(
+                    new Rectangle((int) x, (int) y, getWidth(), getHeight()),
+                    Gui.getInstance().baseButtonColorFirst.getValue(),
+                    Gui.getInstance().baseButtonOutlineColorSecond.getValue()
+            );
         }
 
         if (!isHovering && hoverAnimationx != 0) {

@@ -6,7 +6,7 @@ import com.vydra.death.screen.modules.Module;
 import org.lwjgl.input.Keyboard;
 
 public class DiscordRPC extends Module {
-    public DiscordRPC() {super("DiscordRPC", "", Category.CLIENT, Keyboard.KEY_NONE);}
+    public DiscordRPC() {super("DiscordRPC", "", Category.CLIENT);}
 
     @Override
     public void onEnable() {

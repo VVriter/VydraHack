@@ -8,10 +8,9 @@ import io.netty.buffer.Unpooled;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.lwjgl.input.Keyboard;
 
 public class BirkaBypass extends Module {
-    public BirkaBypass() { super("BirkaBypass", "", Category.CLIENT, Keyboard.KEY_NONE); }
+    public BirkaBypass() { super("BirkaBypass", "", Category.CLIENT); }
 
     @SubscribeEvent
     public void onBypass(PacketEvent.Send event) {

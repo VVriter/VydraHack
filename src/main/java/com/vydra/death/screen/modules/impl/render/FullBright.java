@@ -9,7 +9,7 @@ import org.lwjgl.input.Keyboard;
 public class FullBright extends Module {
 
     public FullBright() {
-        super("FullBright", "s", Category.RENDER);
+        super("FullBright", "Full bright, module that changes brightness", Category.RENDER);
     }
 
     float oldGamma;

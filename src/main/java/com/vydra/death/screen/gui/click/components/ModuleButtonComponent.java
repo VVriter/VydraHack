@@ -3,6 +3,7 @@ package com.vydra.death.screen.gui.click.components;
 import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.Module;
+import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.utils.Render2d;
 import com.vydra.death.screen.utils.animations.EaseLeft;
 import com.vydra.death.screen.utils.animations.EaseRight;
@@ -65,15 +66,23 @@ public class ModuleButtonComponent implements IGuiComponent {
     public void draw() {
         Render2d.drawGradientRectVertical(
                 new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
-                GuiUtil.baseColor,
-                GuiUtil.secondBaseColor
+                Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
+                Gui.getInstance().baseButtonOutlineColorSecond.getValue()
         );
 
 
         if (module.isEnabled) {
-            Render2d.drawGradientRectHorizontalActiveGui(new Rectangle((int) x, (int) y, getWidth(), getHeight()));
+            Render2d.drawGradientRectHorizontal(
+                    new Rectangle((int) x, (int) y, getWidth(), getHeight()),
+                    Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
+                    Gui.getInstance().baseButtonOutlineColorSecond.getValue()
+            );
         } else {
-            Render2d.drawGradientRectHorizontal(new Rectangle((int) x, (int) y, getWidth(), getHeight()));
+            Render2d.drawGradientRectHorizontal(
+                    new Rectangle((int) x, (int) y, getWidth(), getHeight()),
+                    Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
+                    Gui.getInstance().baseButtonOutlineColorSecond.getValue()
+            );
         }
 
         if (!isHovering && hoverAnimationx != 0) {

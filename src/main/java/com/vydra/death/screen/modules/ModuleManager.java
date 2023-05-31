@@ -3,6 +3,7 @@ package com.vydra.death.screen.modules;
 import com.vydra.death.screen.modules.impl.client.BirkaBypass;
 import com.vydra.death.screen.modules.impl.client.DiscordRPC;
 import com.vydra.death.screen.modules.impl.client.Gui;
+import com.vydra.death.screen.modules.impl.client.ModulesEnabledList;
 import com.vydra.death.screen.modules.impl.movement.CornerClip;
 import com.vydra.death.screen.modules.impl.render.FullBright;
 import com.vydra.death.screen.modules.impl.render.ItemViewModel;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
+import java.security.Key;
 import java.util.stream.Stream;
 
 public class ModuleManager {
@@ -23,7 +25,8 @@ public class ModuleManager {
             new DiscordRPC(),
             new CornerClip(),
             new ItemViewModel(),
-            new NoInterpolation()
+            new NoInterpolation(),
+            new ModulesEnabledList()
     };
 
     public void register() {
@@ -32,7 +35,8 @@ public class ModuleManager {
 
     public void unregister() {
         Stream.of(modules).forEach(e-> {
-            if (e.isEnabled) e.onDisable();
+            if (e.isEnabled)
+                e.onDisable();
         });
         MinecraftForge.EVENT_BUS.unregister(this);
     }
@@ -40,8 +44,9 @@ public class ModuleManager {
 
     @SubscribeEvent
     public void onTyping(InputEvent.KeyInputEvent event) {
+        System.out.println(Keyboard.getEventKey());
         Stream.of(modules).forEach(e-> {
-            if (e.getKey() == Keyboard.getEventKey()) {
+            if (e.getKeySetting().getValue() == Keyboard.getEventKey()) {
                 if (Keyboard.getEventKeyState()) {
                     e.toogle();
                 }

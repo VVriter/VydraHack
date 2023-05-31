@@ -1,48 +1,90 @@
 package com.vydra.death.screen.modules.impl.client;
 
 import com.vydra.death.screen.gui.click.GuiMain;
-import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.modules.Category;
 import com.vydra.death.screen.modules.Module;
+import com.vydra.death.screen.modules.settings.types.BooleanSetting;
 import com.vydra.death.screen.modules.settings.types.ColorSetting;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
+import lombok.Getter;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 
 public class Gui extends Module {
+
+    @Getter private static Gui instance;
+
     public Gui(){
         super("Gui", "", Category.CLIENT, Keyboard.KEY_P);
+        instance = this;
     }
 
-    private ColorSetting baseColor = new ColorSetting.Builder()
-            .withName("BaseColor")
+
+    //Category settings
+    public BooleanSetting iconsEnabled = new BooleanSetting.Builder()
             .withModule(this)
-            .withDescription("Base color of gui")
-            .withDefaultValue(new Color(0x4A4ACC))
+            .withName("Enable icons")
+            .withDefaultValue(true)
             .build();
 
-    private ColorSetting secondBaseColor = new ColorSetting.Builder()
-            .withName("SecondBaseColor")
+    public ColorSetting baseGuiCategoryColorFirst = new ColorSetting.Builder()
             .withModule(this)
-            .withDescription("SecondBase color of gui")
-            .withDefaultValue(new Color(0x0AE7E7))
+            .withName("Category color 1")
+            .withDefaultValue(Color.RED)
             .build();
 
-    private ColorSetting activeColor = new ColorSetting.Builder()
-            .withName("ActiveColor")
+    public ColorSetting baseGuiCategoryColorSecond = new ColorSetting.Builder()
             .withModule(this)
-            .withDescription("activeColor color of gui")
-            .withDefaultValue(new Color(0xECEC08))
+            .withName("Category color 2")
+            .withDefaultValue(Color.RED)
             .build();
 
-    private ColorSetting secondActiveColor = new ColorSetting.Builder()
-            .withName("SecondActiveColor")
+    public ColorSetting baseGuiCategoryColorFirstOutline = new ColorSetting.Builder()
             .withModule(this)
-            .withDescription("secondActiveColor color of gui")
-            .withDefaultValue(new Color(0xF80606))
+            .withName("Category outline 1")
+            .withDefaultValue(Color.GRAY)
             .build();
+
+    public ColorSetting baseGuiCategoryColorSecondOutline = new ColorSetting.Builder()
+            .withModule(this)
+            .withName("Category outline 2 2")
+            .withDefaultValue(Color.GRAY)
+            .build();
+
+
+    //Frames
+    public BooleanSetting settingsIndecatorEnabled = new BooleanSetting.Builder()
+            .withModule(this)
+            .withName("Settings indecator")
+            .withDefaultValue(true)
+            .build();
+
+    public ColorSetting baseButtonColorFirst = new ColorSetting.Builder()
+            .withModule(this)
+            .withName("Button color 1")
+            .withDefaultValue(Color.GRAY)
+            .build();
+
+    public ColorSetting baseButtonColorSecond = new ColorSetting.Builder()
+            .withModule(this)
+            .withName("Button color 2")
+            .withDefaultValue(Color.GRAY)
+            .build();
+
+    public ColorSetting baseButtonOutlineColorFirst = new ColorSetting.Builder()
+            .withModule(this)
+            .withName("Button outline color 1")
+            .withDefaultValue(Color.GRAY)
+            .build();
+
+    public ColorSetting baseButtonOutlineColorSecond = new ColorSetting.Builder()
+            .withModule(this)
+            .withName("Button outline color 2")
+            .withDefaultValue(Color.GRAY)
+            .build();
+
+
+
 
     @Override
     public void onDisable() {
@@ -56,11 +98,5 @@ public class Gui extends Module {
         mc.displayGuiScreen(new GuiMain());
     }
 
-    @SubscribeEvent
-    public void onTick(TickEvent.ClientTickEvent event) {
-        GuiUtil.baseColor = baseColor.getValue();
-        GuiUtil.secondBaseColor = secondBaseColor.getValue();
-        GuiUtil.activeColor = activeColor.getValue();
-        GuiUtil.secondActiveColor = secondActiveColor.getValue();
-    }
+
 }

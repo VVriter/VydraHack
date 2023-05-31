@@ -9,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class CornerClip extends Module {
-    public CornerClip() {super("CornerClip", "", Category.MOVEMENT, 0x00);}
+    public CornerClip() {super("CornerClip", "", Category.MOVEMENT);}
 
     private SliderSetting timeout = new SliderSetting.Builder()
             .withName("Timeout")

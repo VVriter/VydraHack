@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class BooleanSetting extends Setting {
+
     @Getter
     private String name;
     @Getter
@@ -33,8 +34,8 @@ public class BooleanSetting extends Setting {
         public String name;
         public Module module;
         private String description;
-
         private boolean value;
+
 
         public Builder withName(String name) {
             this.name = name;
@@ -57,8 +58,10 @@ public class BooleanSetting extends Setting {
             return this;
         }
 
+
         public BooleanSetting build() {
             return new BooleanSetting(this);
         }
+
     }
 }

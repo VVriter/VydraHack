@@ -1,20 +1,24 @@
 package com.vydra.death.screen.modules;
 
 import com.vydra.death.screen.modules.settings.types.KeyBindSetting;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
+
+import java.util.*;
 
 public class Module {
 
     public Minecraft mc = Minecraft.getMinecraft();
 
-    private String name;
-    private String description;
-    private Category category;
-    private int key = 1;
-    public boolean isEnabled = false;
+    @Getter private String name;
+    @Getter private String description;
+    @Getter private Category category;
+    @Getter public boolean isEnabled = false;
 
+    @Getter
     public KeyBindSetting keySetting = new KeyBindSetting.Builder()
             .withDefaultValue(Keyboard.KEY_NONE)
             .withModule(this)
@@ -33,39 +37,33 @@ public class Module {
         this.name = name;
         this.description = description;
         this.category = category;
-        this.key = key;
+        keySetting.setValue(key);
     }
+
+
+
 
     public void onEnable() {
         isEnabled = true;
         MinecraftForge.EVENT_BUS.register(this);
+        listeners.forEach(MinecraftForge.EVENT_BUS::register);
     }
     public void onDisable() {
         isEnabled = false;
         MinecraftForge.EVENT_BUS.unregister(this);
+        listeners.forEach(MinecraftForge.EVENT_BUS::unregister);
+    }
+
+    private List<Object> listeners = new ArrayList<>();
+
+    public void registerListener(Object... objects) {
+        listeners.addAll(Arrays.asList(objects));
     }
 
     public void toogle() {
         if (isEnabled) onDisable();
         else onEnable();
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public int getKey() {
-        return keySetting.getValue();
-    }
-    public void setKey(int key) { keySetting.setValue(key); }
 
 }
 

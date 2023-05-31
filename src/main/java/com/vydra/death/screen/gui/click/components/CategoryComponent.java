@@ -5,6 +5,8 @@ import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.Category;
 import com.vydra.death.screen.modules.Module;
+import com.vydra.death.screen.modules.impl.client.Gui;
+import com.vydra.death.screen.modules.settings.types.BooleanSetting;
 import com.vydra.death.screen.utils.Render2d;
 import com.vydra.death.screen.utils.animations.EaseIn;
 import com.vydra.death.screen.utils.animations.EaseOut;
@@ -51,11 +53,23 @@ public class CategoryComponent implements IGuiComponent {
 
 
         //Drawin category shit
-        Render2d.drawGradientRectHorizontal(new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2));
-        Render2d.drawGradientRectHorizontal(new Rectangle((int) x, (int) y, getWidth(), getHeight()));
+        Render2d.drawGradientRectHorizontal(
+                new Rectangle((int) x-1, (int) y-1, getWidth()+2, getHeight()+2),
+                Gui.getInstance().baseGuiCategoryColorFirstOutline.getValue(),
+                Gui.getInstance().baseGuiCategoryColorSecondOutline.getValue()
+        );
+        Render2d.drawGradientRectHorizontal(
+                new Rectangle((int) x, (int) y, getWidth(), getHeight()),
+                Gui.getInstance().baseGuiCategoryColorFirst.getValue(),
+                Gui.getInstance().baseGuiCategoryColorSecond.getValue()
+        );
 
-        mc.getRenderItem().renderItemAndEffectIntoGUI(category.getItemStack(), (int) x, (int) y);
-        mc.fontRenderer.drawString(category.name(), (int) x+20, (int) y+5, Color.white.getRGB());
+        if (Gui.getInstance().iconsEnabled.isValue()) {
+            mc.getRenderItem().renderItemAndEffectIntoGUI(category.getItemStack(), (int) x, (int) y);
+            mc.fontRenderer.drawString(category.name(), (int) x+20, (int) y+5, Color.white.getRGB());
+        } else {
+            mc.fontRenderer.drawString(category.name(), (int) x+1, (int) y+5, Color.white.getRGB());
+        }
 
         offset += getHeight();
 

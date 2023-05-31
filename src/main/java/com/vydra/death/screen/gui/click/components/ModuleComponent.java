@@ -8,6 +8,8 @@ import com.vydra.death.screen.gui.click.components.sets.KeySettingComponent;
 import com.vydra.death.screen.gui.click.components.sets.SliderSettingComponent;
 import com.vydra.death.screen.gui.click.components.sets.color.ColorSettingComponent;
 import com.vydra.death.screen.modules.Module;
+import com.vydra.death.screen.modules.impl.client.Gui;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,14 +99,16 @@ public class ModuleComponent implements IGuiComponent {
 
         if (!Main.settingManager.modulesSettings(module).isEmpty()) {
             if (isOpened) {
-                drawStringCustom("-", (int) x + getWidth() - 6, (int) y + 4, Color.WHITE.getRGB(), 0.9, 0.9);
+                if (Gui.getInstance().settingsIndecatorEnabled.isValue())
+                    drawStringCustom("-", (int) x + getWidth() - 6, (int) y + 4, Color.WHITE.getRGB(), 0.9, 0.9);
                 for (IGuiComponent component : settings) {
                     component.setY(settingYOffset);
                     component.draw();
                     settingYOffset += component.getHeight();
                 }
             } else {
-                drawStringCustom("+", (int) x + getWidth() - 6, (int) y + 4, Color.WHITE.getRGB(), 0.9, 0.9);
+                if (Gui.getInstance().settingsIndecatorEnabled.isValue())
+                    drawStringCustom("+", (int) x + getWidth() - 6, (int) y + 4, Color.WHITE.getRGB(), 0.9, 0.9);
             }
         }
     }
