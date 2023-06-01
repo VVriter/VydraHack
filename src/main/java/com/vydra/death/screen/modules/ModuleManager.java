@@ -4,6 +4,7 @@ import com.vydra.death.screen.modules.impl.client.BirkaBypass;
 import com.vydra.death.screen.modules.impl.client.DiscordRPC;
 import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.impl.client.ModulesEnabledList;
+import com.vydra.death.screen.modules.impl.miscalaneous.NoEntityTrace;
 import com.vydra.death.screen.modules.impl.movement.CornerClip;
 import com.vydra.death.screen.modules.impl.render.FullBright;
 import com.vydra.death.screen.modules.impl.render.ItemViewModel;
@@ -26,7 +27,8 @@ public class ModuleManager {
             new CornerClip(),
             new ItemViewModel(),
             new NoInterpolation(),
-            new ModulesEnabledList()
+            new ModulesEnabledList(),
+            new NoEntityTrace()
     };
 
     public void register() {
