@@ -30,13 +30,13 @@ public class Gui extends Module {
     public ColorSetting baseGuiCategoryColorFirst = new ColorSetting.Builder()
             .withModule(this)
             .withName("Category color 1")
-            .withDefaultValue(Color.RED)
+            .withDefaultValue(new Color(0xFFA10707, true))
             .build();
 
     public ColorSetting baseGuiCategoryColorSecond = new ColorSetting.Builder()
             .withModule(this)
             .withName("Category color 2")
-            .withDefaultValue(Color.RED)
+            .withDefaultValue(new Color(0xFFA10707, true))
             .build();
 
     public ColorSetting baseGuiCategoryColorFirstOutline = new ColorSetting.Builder()

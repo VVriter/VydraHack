@@ -32,9 +32,6 @@ public class ColorSettingButton implements IGuiComponent {
     }
 
 
-
-
-
     @Override
     public void onClick(int x, int y, int state) {
         if (GuiUtil.isHoveringOnTheComponent(this, x, y)) {
