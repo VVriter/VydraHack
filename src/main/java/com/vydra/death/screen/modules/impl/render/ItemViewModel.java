@@ -2,7 +2,9 @@ package com.vydra.death.screen.modules.impl.render;
 
 import com.vydra.death.screen.modules.Category;
 import com.vydra.death.screen.modules.Module;
+import com.vydra.death.screen.modules.settings.types.BooleanSetting;
 import com.vydra.death.screen.modules.settings.types.SliderSetting;
+import it.unimi.dsi.fastutil.booleans.BooleanSet;
 
 public class ItemViewModel extends Module {
 
@@ -14,6 +16,12 @@ public class ItemViewModel extends Module {
             .min(1)
             .max(40)
             .withDefaultValue(20)
+            .build();
+
+    public BooleanSetting noSway = new BooleanSetting.Builder()
+            .withModule(this)
+            .withName("NoSway")
+            .withDefaultValue(true)
             .build();
 
     public SliderSetting tx = new SliderSetting.Builder()

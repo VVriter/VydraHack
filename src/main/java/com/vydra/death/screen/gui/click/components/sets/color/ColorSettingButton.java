@@ -8,6 +8,7 @@ import com.vydra.death.screen.modules.settings.types.ColorSetting;
 import com.vydra.death.screen.utils.Render2d;
 import com.vydra.death.screen.utils.animations.EaseLeft;
 import com.vydra.death.screen.utils.animations.EaseRight;
+import net.minecraft.client.renderer.entity.Render;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -73,13 +74,15 @@ public class ColorSettingButton implements IGuiComponent {
 
         Render2d.drawGradientRectHorizontal(
                 new Rectangle((int) x, (int) y, hoverAnimationx, getHeight()),
-                new Color(0x8C1A0750, true),
-                new Color(0x8C1A0750, true)
+                Gui.getInstance().baseButtonColorFirst.getValue(),
+                Gui.getInstance().baseButtonColorSecond.getValue()
         );
 
 
         drawStringCustom(setting.getName(), (int) x+2, (int) y+4, Color.WHITE.getRGB(), 0.9, 0.9);
-        Render2d.drawFilledCircle(new Point2D.Double(x + getWidth() - 10, y+6),((ColorSetting)setting).getValue(), 4);
+
+        Render2d.drawRectangle(new Rectangle(x + getWidth() - 13, y +1, 10, 10), Color.WHITE);
+        Render2d.drawRectangle(new Rectangle(x + getWidth() - 12, y +2, 8, 8), ((ColorSetting)setting).getValue());
 
         isHovering = false;
     }

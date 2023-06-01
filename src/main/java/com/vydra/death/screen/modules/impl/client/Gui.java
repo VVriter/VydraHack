@@ -42,13 +42,13 @@ public class Gui extends Module {
     public ColorSetting baseGuiCategoryColorFirstOutline = new ColorSetting.Builder()
             .withModule(this)
             .withName("Category outline 1")
-            .withDefaultValue(Color.GRAY)
+            .withDefaultValue(new Color(0x7B7B7C))
             .build();
 
     public ColorSetting baseGuiCategoryColorSecondOutline = new ColorSetting.Builder()
             .withModule(this)
             .withName("Category outline 2 2")
-            .withDefaultValue(Color.GRAY)
+            .withDefaultValue(new Color(0x7B7B7C))
             .build();
 
 
@@ -62,25 +62,25 @@ public class Gui extends Module {
     public ColorSetting baseButtonColorFirst = new ColorSetting.Builder()
             .withModule(this)
             .withName("Button color 1")
-            .withDefaultValue(Color.GRAY)
+            .withDefaultValue(new Color(0x333131))
             .build();
 
     public ColorSetting baseButtonColorSecond = new ColorSetting.Builder()
             .withModule(this)
             .withName("Button color 2")
-            .withDefaultValue(Color.GRAY)
+            .withDefaultValue(new Color(0x333131))
             .build();
 
     public ColorSetting baseButtonOutlineColorFirst = new ColorSetting.Builder()
             .withModule(this)
             .withName("Button outline color 1")
-            .withDefaultValue(Color.GRAY)
+            .withDefaultValue(new Color(0x7B7B7C))
             .build();
 
     public ColorSetting baseButtonOutlineColorSecond = new ColorSetting.Builder()
             .withModule(this)
             .withName("Button outline color 2")
-            .withDefaultValue(Color.GRAY)
+            .withDefaultValue(new Color(0x7B7B7C))
             .build();
 
 

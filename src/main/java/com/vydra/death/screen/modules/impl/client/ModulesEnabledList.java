@@ -28,11 +28,9 @@ public class ModulesEnabledList extends Module {
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent event) {
         AtomicInteger offset = new AtomicInteger(1);
-        Stream.of(Main.moduleManager.getModules()).forEach(e-> {
-            if (e.isEnabled) {
-                GuiUtil.drawStringCustom(e.getName(), 1, offset.get(), color.getValue().getRGB(), 1, 1);
-                offset.addAndGet(10);
-            }
+        Stream.of(Main.moduleManager.getModules()).filter(e-> e.isEnabled).forEach(e-> {
+            GuiUtil.drawStringCustom(e.getName(), 1, offset.get(), color.getValue().getRGB(), 1, 1);
+            offset.addAndGet(10);
         });
     }
 

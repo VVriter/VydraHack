@@ -33,4 +33,12 @@ public class MixinItemRender {
     }
 
 
+    @Inject(method = "rotateArm", at = @At("HEAD"), cancellable = true)
+    public void rotateArmHook(float p_187458_1_, CallbackInfo ci) {
+        if (ItemViewModel.INSTANCE.isEnabled && ItemViewModel.INSTANCE.noSway.isValue()) {
+            ci.cancel();
+        }
+    }
+
+
 }

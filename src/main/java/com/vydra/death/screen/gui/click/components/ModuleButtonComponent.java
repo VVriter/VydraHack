@@ -74,8 +74,8 @@ public class ModuleButtonComponent implements IGuiComponent {
         if (module.isEnabled) {
             Render2d.drawGradientRectHorizontal(
                     new Rectangle((int) x, (int) y, getWidth(), getHeight()),
-                    Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
-                    Gui.getInstance().baseButtonOutlineColorSecond.getValue()
+                    Gui.getInstance().baseButtonColorFirst.getValue(),
+                    Gui.getInstance().baseButtonColorSecond.getValue()
             );
         } else {
             Render2d.drawGradientRectHorizontal(
@@ -95,8 +95,8 @@ public class ModuleButtonComponent implements IGuiComponent {
 
         Render2d.drawGradientRectHorizontal(
                 new Rectangle((int) x, (int) y, hoverAnimationx, getHeight()),
-                new Color(0x8C1A0750, true),
-                new Color(0x8C1A0750, true)
+                Gui.getInstance().baseButtonColorFirst.getValue(),
+                Gui.getInstance().baseButtonColorSecond.getValue()
         );
 
 

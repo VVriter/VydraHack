@@ -34,8 +34,8 @@ public class Main {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        System.out.println("PRE_INIT!");
         logger = event.getModLog();
+        logger.info("Loading vydra hack");
 
         settingManager = new SettingManager();
         moduleManager = new ModuleManager();

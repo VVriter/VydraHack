@@ -71,13 +71,13 @@ public class BooleanSettingComponent implements IGuiComponent {
         if (((BooleanSetting)setting).isValue()) {
             Render2d.drawGradientRectHorizontal(
                     new Rectangle((int) x, (int) y, getWidth(), getHeight()),
-                    Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
-                    Gui.getInstance().baseButtonOutlineColorSecond.getValue()
+                    Gui.getInstance().baseButtonColorFirst.getValue(),
+                    Gui.getInstance().baseButtonColorSecond.getValue()
             );
         } else {
             Render2d.drawGradientRectHorizontal(
                     new Rectangle((int) x, (int) y, getWidth(), getHeight()),
-                    Gui.getInstance().baseButtonColorFirst.getValue(),
+                    Gui.getInstance().baseButtonOutlineColorFirst.getValue(),
                     Gui.getInstance().baseButtonOutlineColorSecond.getValue()
             );
         }
