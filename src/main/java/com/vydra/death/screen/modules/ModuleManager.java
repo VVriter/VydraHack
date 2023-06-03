@@ -4,17 +4,19 @@ import com.vydra.death.screen.modules.impl.client.BirkaBypass;
 import com.vydra.death.screen.modules.impl.client.DiscordRPC;
 import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.impl.client.ModulesEnabledList;
+import com.vydra.death.screen.modules.impl.combat.crystalaura.AutoCrystal;
 import com.vydra.death.screen.modules.impl.miscalaneous.NoEntityTrace;
 import com.vydra.death.screen.modules.impl.movement.CornerClip;
 import com.vydra.death.screen.modules.impl.render.FullBright;
+import com.vydra.death.screen.modules.impl.render.ItemShader;
 import com.vydra.death.screen.modules.impl.render.ItemViewModel;
 import com.vydra.death.screen.modules.impl.render.NoInterpolation;
+import com.vydra.death.screen.modules.impl.miscalaneous.Fakeplayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
-import java.security.Key;
 import java.util.stream.Stream;
 
 public class ModuleManager {
@@ -28,7 +30,10 @@ public class ModuleManager {
             new ItemViewModel(),
             new NoInterpolation(),
             new ModulesEnabledList(),
-            new NoEntityTrace()
+            new NoEntityTrace(),
+            new Fakeplayer(),
+            new AutoCrystal(),
+            new ItemShader()
     };
 
     public void register() {

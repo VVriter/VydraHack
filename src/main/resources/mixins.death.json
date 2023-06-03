@@ -15,6 +15,7 @@
       "MixinItemRender",
       "MixinEntityLivingBase",
       "MixinEntityOtherPlayerMP",
-      "MixinEntityRenderer"
+      "MixinEntityRenderer",
+      "IEntityRenderer"
   ]
 }

@@ -2,10 +2,14 @@ package com.vydra.death.screen.utils;
 
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.culling.ICamera;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -98,6 +102,58 @@ public class Render3d {
         RenderGlobal.renderFilledBox(iblockstate.getSelectedBoundingBox((World)mc.world, pos).grow(0.002).offset(-d3, -d4, -d5), color.getRed() / 255.0f, color.getGreen() / 255.0f, color.getBlue() / 255.0f, color.getAlpha() / 255.0f);
         GL11.glDisable(2848);
         GlStateManager.depthMask(true);
+        GlStateManager.enableDepth();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
+    }
+
+
+
+
+
+
+    public static void drawCylinder(double x, double y, double z, double radius, double height, int sides) {
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        GlStateManager.disableDepth();
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder vertexBuffer = tessellator.getBuffer();
+
+        double angleIncrement = (2 * Math.PI) / sides;
+        double angle = 0;
+
+        vertexBuffer.begin(7, DefaultVertexFormats.POSITION);
+
+        for (int i = 0; i < sides; i++) {
+            double x1 = x + radius * Math.cos(angle);
+            double z1 = z + radius * Math.sin(angle);
+            double x2 = x + radius * Math.cos(angle + angleIncrement);
+            double z2 = z + radius * Math.sin(angle + angleIncrement);
+
+            // Draw side faces
+            vertexBuffer.pos(x1, y, z1).endVertex();
+            vertexBuffer.pos(x1, y + height, z1).endVertex();
+            vertexBuffer.pos(x2, y + height, z2).endVertex();
+
+            vertexBuffer.pos(x2, y + height, z2).endVertex();
+            vertexBuffer.pos(x2, y, z2).endVertex();
+            vertexBuffer.pos(x1, y, z1).endVertex();
+
+            // Draw top face
+            vertexBuffer.pos(x, y + height, z).endVertex();
+            vertexBuffer.pos(x2, y + height, z2).endVertex();
+            vertexBuffer.pos(x1, y + height, z1).endVertex();
+
+            // Draw bottom face
+            vertexBuffer.pos(x, y, z).endVertex();
+            vertexBuffer.pos(x1, y, z1).endVertex();
+            vertexBuffer.pos(x2, y, z2).endVertex();
+
+            angle += angleIncrement;
+        }
+
+        tessellator.draw();
         GlStateManager.enableDepth();
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();

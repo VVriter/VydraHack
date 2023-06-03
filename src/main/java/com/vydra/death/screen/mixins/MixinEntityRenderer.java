@@ -1,10 +1,14 @@
 package com.vydra.death.screen.mixins;
 
+import com.vydra.death.screen.events.RenderItemInFirstPersonEvent;
 import com.vydra.death.screen.modules.impl.miscalaneous.NoEntityTrace;
+import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraftforge.common.MinecraftForge;
 import org.spongepowered.asm.mixin.injection.Inject;
 import net.minecraft.client.renderer.EntityRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import static com.vydra.death.screen.utils.Render2d.mc;
 
@@ -18,6 +22,14 @@ public class MixinEntityRenderer {
             info.cancel();
             mc.profiler.endSection();
         }
+    }
+
+    @Redirect(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ItemRenderer;renderItemInFirstPerson(F)V"))
+    private void renderHand(ItemRenderer itemRenderer, float partialTicks)
+    {
+        RenderItemInFirstPersonEvent event = new RenderItemInFirstPersonEvent();
+        MinecraftForge.EVENT_BUS.post(event);
+        if (!event.isCanceled()) itemRenderer.renderItemInFirstPerson(partialTicks);
     }
 
 }
