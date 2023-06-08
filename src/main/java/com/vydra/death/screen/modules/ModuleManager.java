@@ -55,11 +55,8 @@ public class ModuleManager {
     @SubscribeEvent
     public void onTyping(InputEvent.KeyInputEvent event) {
         Stream.of(modules).forEach(e-> {
-            if (e.getKeySetting().getValue() == Keyboard.getEventKey()) {
-                if (Keyboard.getEventKeyState()) {
+            if (e.getKeySetting().getValue() == Keyboard.getEventKey() && Keyboard.getEventKeyState())
                     e.toogle();
-                }
-            }
         });
     }
 
