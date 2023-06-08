@@ -5,6 +5,7 @@ import com.vydra.death.screen.modules.impl.client.DiscordRPC;
 import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.impl.client.ModulesEnabledList;
 import com.vydra.death.screen.modules.impl.combat.crystalaura.AutoCrystal;
+import com.vydra.death.screen.modules.impl.exploit.HitboxDesync;
 import com.vydra.death.screen.modules.impl.miscalaneous.NoEntityTrace;
 import com.vydra.death.screen.modules.impl.movement.CornerClip;
 import com.vydra.death.screen.modules.impl.render.FullBright;
@@ -17,6 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class ModuleManager {
@@ -33,7 +35,8 @@ public class ModuleManager {
             new NoEntityTrace(),
             new Fakeplayer(),
             new AutoCrystal(),
-            new ItemShader()
+            new ItemShader(),
+            new HitboxDesync()
     };
 
     public void register() {
@@ -51,7 +54,6 @@ public class ModuleManager {
 
     @SubscribeEvent
     public void onTyping(InputEvent.KeyInputEvent event) {
-        System.out.println(Keyboard.getEventKey());
         Stream.of(modules).forEach(e-> {
             if (e.getKeySetting().getValue() == Keyboard.getEventKey()) {
                 if (Keyboard.getEventKeyState()) {
@@ -66,9 +68,8 @@ public class ModuleManager {
     }
 
     public Module getModuleByName(String name) {
-        for (Module module : modules) { if (module.getName() == name) return module; }
+        for (Module module : modules) { if (Objects.equals(module.getName(), name)) return module; }
         return null;
     }
-
 
 }
