@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 
 public class ModuleManager {
 
-    private Module[] modules = {
+    private final Module[] modules = {
             new Gui(),
             new FullBright(),
             new BirkaBypass(),
