@@ -65,7 +65,7 @@ public class CategoryComponent implements IGuiComponent {
         );
 
         if (Gui.getInstance().iconsEnabled.isValue()) {
-            mc.getRenderItem().renderItemAndEffectIntoGUI(category.getItemStack(), (int) x, (int) y);
+            mc.getRenderItem().renderItemAndEffectIntoGUI(category.getStack(), (int) x, (int) y);
             mc.fontRenderer.drawString(category.name(), (int) x+20, (int) y+5, Color.white.getRGB());
         } else {
             mc.fontRenderer.drawString(category.name(), (int) x+1, (int) y+5, Color.white.getRGB());

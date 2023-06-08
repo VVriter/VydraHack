@@ -1,5 +1,6 @@
 package com.vydra.death.screen.modules;
 
+import lombok.Getter;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
 
@@ -12,13 +13,10 @@ public enum Category {
     CLIENT(new ItemStack(Items.EXPERIENCE_BOTTLE));
 
 
+    @Getter
     private ItemStack stack;
     Category(ItemStack stack) {
         this.stack = stack;
-    }
-
-    public ItemStack getItemStack() {
-        return stack;
     }
 }
 

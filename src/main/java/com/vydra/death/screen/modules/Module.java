@@ -2,7 +2,6 @@ package com.vydra.death.screen.modules;
 
 import com.vydra.death.screen.modules.settings.types.KeyBindSetting;
 import lombok.Getter;
-import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
