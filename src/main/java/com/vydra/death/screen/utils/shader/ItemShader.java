@@ -24,22 +24,22 @@ public class ItemShader extends FramebufferShader
     }
 
     @Override
-    public void setupUniforms()
-    {
-        setupUniform("texture");
-        setupUniform("texelSize");
-        setupUniform("color");
-        setupUniform("divider");
-        setupUniform("radius");
-        setupUniform("maxSample");
-        setupUniform("dimensions");
-        setupUniform("blur");
-        setupUniform("mixFactor");
-        setupUniform("minAlpha");
-        setupUniform("image");
-        setupUniform("imageMix");
-        setupUniform("useImage");
-        // setupUniform("rotate");
+    public void setupUniforms() {
+        setupUniforms(
+                "texture",
+                "texelSize",
+                "color",
+                "divider",
+                "radius",
+                "maxSample",
+                "dimensions",
+                "blur",
+                "mixFactor",
+                "minAlpha",
+                "image",
+                "imageMix",
+                "useImage"
+        );
     }
 
     @Override

@@ -6,6 +6,7 @@ import org.lwjgl.opengl.*;
 
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,6 +102,10 @@ public abstract class Shader {
 
     public void setUniform(final String uniformName, final int location) {
         uniformsMap.put(uniformName, location);
+    }
+
+    public void setupUniforms(String... uniforms) {
+        Arrays.stream(uniforms).forEach(this::setupUniform);
     }
 
     public void setupUniform(final String uniformName) {
