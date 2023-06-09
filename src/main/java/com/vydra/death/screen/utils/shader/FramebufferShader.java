@@ -82,10 +82,8 @@ public abstract class FramebufferShader extends Shader {
      * @author Megyn
      */
     public Framebuffer setupFrameBuffer(Framebuffer frameBuffer) {
-        if (Display.isActive() || Display.isVisible())
-        {
-            if (frameBuffer != null)
-            {
+        if (Display.isActive() || Display.isVisible()) {
+            if (frameBuffer != null) {
                 frameBuffer.framebufferClear();
                 ScaledResolution scale = new ScaledResolution(Minecraft.getMinecraft());
                 int factor = scale.getScaleFactor();
@@ -100,15 +98,12 @@ public abstract class FramebufferShader extends Shader {
                 lastScaleWidth = factor2;
                 lastScaleHeight = factor3;
             }
-            else
-            {
+            else {
                 frameBuffer = new Framebuffer(mc.displayWidth, mc.displayHeight, true);
             }
         }
-        else
-        {
-            if (frameBuffer == null)
-            {
+        else {
+            if (frameBuffer == null) {
                 frameBuffer = new Framebuffer(mc.displayWidth, mc.displayHeight, true);
             }
         }

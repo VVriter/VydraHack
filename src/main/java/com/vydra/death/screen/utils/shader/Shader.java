@@ -74,12 +74,10 @@ public abstract class Shader {
 
     private int createShader(String shaderSource, int shaderType) {
         int shader = 0;
-
         try {
             shader = ARBShaderObjects.glCreateShaderObjectARB(shaderType);
 
-            if (shader == 0)
-                return 0;
+            if (shader == 0) return 0;
 
             ARBShaderObjects.glShaderSourceARB(shader, shaderSource);
             ARBShaderObjects.glCompileShaderARB(shader);
@@ -88,11 +86,9 @@ public abstract class Shader {
                 throw new RuntimeException("Error creating shaders: " + getLogInfo(shader));
 
             return shader;
-        }
-        catch (final Exception e) {
+        } catch (final Exception e) {
             ARBShaderObjects.glDeleteObjectARB(shader);
             throw e;
-
         }
     }
 

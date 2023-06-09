@@ -6,20 +6,16 @@ import org.lwjgl.opengl.GL20;
 
 import static com.vydra.death.screen.utils.Render2d.mc;
 
-public class ItemShader extends FramebufferShader
-{
-
+public class ItemShader extends FramebufferShader {
 
     public boolean blur;
     public float mix = 0.0f;
     public float alpha = 1.0f;
     public float imageMix = 0.0f;
     public boolean useImage;
-    public boolean rotate;
     public static final ItemShader ITEM_SHADER = new ItemShader();
 
     public ItemShader() {
-
         super("itemglow.frag");
     }
 
@@ -43,8 +39,7 @@ public class ItemShader extends FramebufferShader
     }
 
     @Override
-    public void updateUniforms()
-    {
+    public void updateUniforms() {
         GL20.glUniform1i(getUniform("texture"), 0);
         GL20.glUniform2f(getUniform("texelSize"), 1F / mc.displayWidth * (radius * quality), 1F / mc.displayHeight * (radius * quality));
         GL20.glUniform3f(getUniform("color"), red, green, blue);
