@@ -40,6 +40,7 @@ public class Main {
         settingManager = new SettingManager();
         moduleManager = new ModuleManager();
         moduleManager.register();
+        moduleManager.saveConfig(moduleManager.getDefaultConfigFile());
 
         configManager = new ConfigManager();
         discordRpcManager = new DiscordRpcManager();

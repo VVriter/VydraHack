@@ -1,23 +1,31 @@
 package com.vydra.death.screen.modules;
 
+import com.google.gson.*;
+import com.vydra.death.screen.Main;
 import com.vydra.death.screen.modules.impl.client.BirkaBypass;
 import com.vydra.death.screen.modules.impl.client.DiscordRPC;
 import com.vydra.death.screen.modules.impl.client.Gui;
-import com.vydra.death.screen.modules.impl.client.ModulesEnabledList;
-import com.vydra.death.screen.modules.impl.combat.crystalaura.AutoCrystal;
+import com.vydra.death.screen.modules.impl.client.TestModule;
 import com.vydra.death.screen.modules.impl.exploit.HitboxDesync;
 import com.vydra.death.screen.modules.impl.miscalaneous.NoEntityTrace;
 import com.vydra.death.screen.modules.impl.movement.CornerClip;
-import com.vydra.death.screen.modules.impl.render.FullBright;
-import com.vydra.death.screen.modules.impl.render.ItemShader;
-import com.vydra.death.screen.modules.impl.render.ItemViewModel;
-import com.vydra.death.screen.modules.impl.render.NoInterpolation;
+import com.vydra.death.screen.modules.impl.render.*;
 import com.vydra.death.screen.modules.impl.miscalaneous.Fakeplayer;
+import com.vydra.death.screen.modules.settings.Setting;
+import com.vydra.death.screen.modules.settings.types.BooleanSetting;
+import com.vydra.death.screen.modules.settings.types.ColorSetting;
+import com.vydra.death.screen.modules.settings.types.KeyBindSetting;
+import com.vydra.death.screen.modules.settings.types.SliderSetting;
+import lombok.Getter;
+import lombok.SneakyThrows;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.json.JSONObject;
 import org.lwjgl.input.Keyboard;
 
+import java.awt.*;
+import java.io.*;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -31,12 +39,12 @@ public class ModuleManager {
             new CornerClip(),
             new ItemViewModel(),
             new NoInterpolation(),
-            new ModulesEnabledList(),
             new NoEntityTrace(),
             new Fakeplayer(),
-            new AutoCrystal(),
             new ItemShader(),
-            new HitboxDesync()
+            new HitboxDesync(),
+            new BurrowEsp(),
+            new TestModule()
     };
 
     public void register() {
@@ -64,9 +72,100 @@ public class ModuleManager {
         return modules;
     }
 
+    @SneakyThrows
     public Module getModuleByName(String name) {
         for (Module module : modules) { if (Objects.equals(module.getName(), name)) return module; }
-        return null;
+        throw new Exception("Module not found");
     }
 
+    @Getter
+    private final File defaultConfigFile = new File("./default.cfg");
+
+    @SneakyThrows
+    public void saveConfig(File file) {
+        if (!file.exists()) file.createNewFile();
+
+        JSONObject finalObject = new JSONObject();
+        for (Module module : modules) {
+            JSONObject object = new JSONObject();
+            for (Setting s : Main.settingManager.modulesSettings(module)) {
+                switch (s.getSettingType()) {
+                    case KEYBIND: {
+                        object.put(s.getName(), ((KeyBindSetting) s).getValue());
+                        break;
+                    }
+                    case COLOR: {
+                        object.put(s.getName(), ((ColorSetting) s).getValue().getRGB());
+                        break;
+                    }
+                    case SLIDER: {
+                        object.put(s.getName(), ((SliderSetting) s).getValue());
+                        break;
+                    }
+                    case BOOLEAN: {
+                        object.put(s.getName(), ((BooleanSetting)s).isValue());
+                        break;
+                    }
+                }
+            }
+
+            finalObject.put(module.getName(), object);
+        }
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonElement je = new JsonParser().parse(finalObject.toString());
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(gson.toJson(je));
+        writer.close();
+    }
+
+    @SneakyThrows
+    public void loadConfig(File file) {
+        JSONObject content = new JSONObject(readFile(file));
+
+        for (Module module : modules) {
+            JSONObject moduleSettingsContent = content.getJSONObject(module.getName());
+            for (Setting setting : Main.settingManager.modulesSettings(module)) {
+                switch (setting.getSettingType()) {
+                    case KEYBIND: {
+                        int value = moduleSettingsContent.getInt(setting.getName());
+                        ((KeyBindSetting) setting).setValue(value);
+                        break;
+                    }
+                    case COLOR: {
+                        int value = moduleSettingsContent.getInt(setting.getName());
+                        ((ColorSetting) setting).setValue(new Color(value));
+                        break;
+                    }
+                    case SLIDER: {
+                        long value = moduleSettingsContent.getLong(setting.getName());
+                        ((SliderSetting) setting).setValue(value);
+                        break;
+                    }
+                    case BOOLEAN: {
+                        boolean value = moduleSettingsContent.getBoolean(setting.getName());
+                        ((BooleanSetting)setting).setValue(value);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+
+    @SneakyThrows
+    public static String readFile(File file) throws IOException {
+        final BufferedReader br = new BufferedReader(new FileReader(file));
+        final StringBuilder sb = new StringBuilder();
+        String line = br.readLine();
+
+        while (line != null) {
+            sb.append(line);
+            sb.append(System.lineSeparator());
+            line = br.readLine();
+        }
+        final String everything = sb.toString();
+        return everything;
+    }
 }

@@ -161,4 +161,9 @@ public class BlockUtil {
         return rayTraceResult != null && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK && rayTraceResult.getBlockPos().equals(pos);
     }
 
+
+    public static BlockPos getFlooredPos(Entity e) {
+        return new BlockPos(Math.floor(e.posX), Math.floor(e.posY), Math.floor(e.posZ));
+    }
+
 }

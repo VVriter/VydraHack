@@ -85,7 +85,8 @@ public class Render3d {
         }
     }
 
-    public static void drawProperBox(final BlockPos pos, final Color color, final int alpha) {
+    public static void drawProperBox(final BlockPos pos, Color color, final int alpha) {
+        color = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
         final IBlockState iblockstate = mc.world.getBlockState(pos);
         final Entity player = mc.getRenderViewEntity();
         final double d3 = player.lastTickPosX + (player.posX - player.lastTickPosX) * mc.getRenderPartialTicks();
@@ -109,54 +110,4 @@ public class Render3d {
     }
 
 
-
-
-
-
-    public static void drawCylinder(double x, double y, double z, double radius, double height, int sides) {
-        GlStateManager.pushMatrix();
-        GlStateManager.enableBlend();
-        GlStateManager.disableDepth();
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder vertexBuffer = tessellator.getBuffer();
-
-        double angleIncrement = (2 * Math.PI) / sides;
-        double angle = 0;
-
-        vertexBuffer.begin(7, DefaultVertexFormats.POSITION);
-
-        for (int i = 0; i < sides; i++) {
-            double x1 = x + radius * Math.cos(angle);
-            double z1 = z + radius * Math.sin(angle);
-            double x2 = x + radius * Math.cos(angle + angleIncrement);
-            double z2 = z + radius * Math.sin(angle + angleIncrement);
-
-            // Draw side faces
-            vertexBuffer.pos(x1, y, z1).endVertex();
-            vertexBuffer.pos(x1, y + height, z1).endVertex();
-            vertexBuffer.pos(x2, y + height, z2).endVertex();
-
-            vertexBuffer.pos(x2, y + height, z2).endVertex();
-            vertexBuffer.pos(x2, y, z2).endVertex();
-            vertexBuffer.pos(x1, y, z1).endVertex();
-
-            // Draw top face
-            vertexBuffer.pos(x, y + height, z).endVertex();
-            vertexBuffer.pos(x2, y + height, z2).endVertex();
-            vertexBuffer.pos(x1, y + height, z1).endVertex();
-
-            // Draw bottom face
-            vertexBuffer.pos(x, y, z).endVertex();
-            vertexBuffer.pos(x1, y, z1).endVertex();
-            vertexBuffer.pos(x2, y, z2).endVertex();
-
-            angle += angleIncrement;
-        }
-
-        tessellator.draw();
-        GlStateManager.enableDepth();
-        GlStateManager.enableTexture2D();
-        GlStateManager.disableBlend();
-        GlStateManager.popMatrix();
-    }
 }

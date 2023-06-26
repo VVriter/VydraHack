@@ -4,18 +4,22 @@
   "package": "com.vydra.death.screen.mixins",
   "refmap": "mixins.death.refmap.json",
   "mixins": [
-      "PacketEventMixin",
-      "ICPacketPlayer",
-      "VisGraphMixin",
-      "IMinecraft",
-      "ITimer",
-      "IEntityPlayerSP",
-      "ICPacketCustomPayload",
-      "MixinEntityPlayerSP",
-      "MixinItemRender",
-      "MixinEntityLivingBase",
-      "MixinEntityOtherPlayerMP",
-      "MixinEntityRenderer",
-      "IEntityRenderer"
+    "ICPacketCustomPayload",
+    "ICPacketPlayer",
+    "IEntityPlayerSP",
+    "IEntityRenderer",
+    "IMinecraft",
+    "ITimer",
+    "MixinEntityLivingBase",
+    "MixinEntityOtherPlayerMP",
+    "MixinEntityPlayerSP",
+    "MixinEntityRenderer",
+    "MixinItemRender",
+    "PacketEventMixin",
+    "VisGraphMixin"
+  ],
+  "client": [
+    "IEntityRenderer",
+    "IRenderManager"
   ]
 }
