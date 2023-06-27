@@ -18,7 +18,7 @@ import java.util.UUID;
 
 public class Fakeplayer extends Module {
     public Fakeplayer() {
-        super("FakePlayer", "", Category.MISCELLANEOUS);
+        super("FakePlayer", Category.MISCELLANEOUS);
     }
 
     private BooleanSetting rotations = new BooleanSetting.Builder()
@@ -36,7 +36,7 @@ public class Fakeplayer extends Module {
     private BooleanSetting move = new BooleanSetting.Builder()
             .withModule(this)
             .withName("Move")
-            .withDefaultValue(true)
+            .withDefaultValue(false)
             .build();
 
     private SliderSetting speed = new SliderSetting.Builder()

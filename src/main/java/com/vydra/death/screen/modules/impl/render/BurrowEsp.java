@@ -48,7 +48,7 @@ public class BurrowEsp extends Module {
     private List<PosEsp> posEspList;
 
     public BurrowEsp() {
-        super("BurrowEsp", "", Category.RENDER);
+        super("BurrowEsp", Category.RENDER);
     }
 
     @Override

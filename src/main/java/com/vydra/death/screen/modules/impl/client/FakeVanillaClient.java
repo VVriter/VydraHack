@@ -9,8 +9,8 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class BirkaBypass extends Module {
-    public BirkaBypass() { super("BirkaBypass", "", Category.CLIENT); }
+public class FakeVanillaClient extends Module {
+    public FakeVanillaClient() { super("FakeVanillaClient", Category.CLIENT); }
 
     @SubscribeEvent
     public void onBypass(PacketEvent.Send event) {

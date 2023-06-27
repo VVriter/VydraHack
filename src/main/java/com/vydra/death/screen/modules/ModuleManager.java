@@ -2,13 +2,13 @@ package com.vydra.death.screen.modules;
 
 import com.google.gson.*;
 import com.vydra.death.screen.Main;
-import com.vydra.death.screen.modules.impl.client.BirkaBypass;
+import com.vydra.death.screen.modules.impl.client.FakeVanillaClient;
 import com.vydra.death.screen.modules.impl.client.DiscordRPC;
 import com.vydra.death.screen.modules.impl.client.Gui;
-import com.vydra.death.screen.modules.impl.client.TestModule;
 import com.vydra.death.screen.modules.impl.exploit.HitboxDesync;
+import com.vydra.death.screen.modules.impl.miscalaneous.KickSound;
 import com.vydra.death.screen.modules.impl.miscalaneous.NoEntityTrace;
-import com.vydra.death.screen.modules.impl.movement.CornerClip;
+import com.vydra.death.screen.modules.impl.exploit.CornerClip;
 import com.vydra.death.screen.modules.impl.render.*;
 import com.vydra.death.screen.modules.impl.miscalaneous.Fakeplayer;
 import com.vydra.death.screen.modules.settings.Setting;
@@ -34,7 +34,7 @@ public class ModuleManager {
     private final Module[] modules = {
             new Gui(),
             new FullBright(),
-            new BirkaBypass(),
+            new FakeVanillaClient(),
             new DiscordRPC(),
             new CornerClip(),
             new ItemViewModel(),
@@ -44,7 +44,8 @@ public class ModuleManager {
             new ItemShader(),
             new HitboxDesync(),
             new BurrowEsp(),
-            new TestModule()
+            new PyroArrow(),
+            new KickSound()
     };
 
     public void register() {
@@ -79,15 +80,17 @@ public class ModuleManager {
     }
 
     @Getter
-    private final File defaultConfigFile = new File("./default.cfg");
+    private final File defaultConfigFile = new File("./vydra/default.cfg");
 
     @SneakyThrows
     public void saveConfig(File file) {
+        if (!new File("./vydra").exists()) new File("./vydra").mkdir();
         if (!file.exists()) file.createNewFile();
 
         JSONObject finalObject = new JSONObject();
         for (Module module : modules) {
             JSONObject object = new JSONObject();
+            object.put("enabled", module.isEnabled);
             for (Setting s : Main.settingManager.modulesSettings(module)) {
                 switch (s.getSettingType()) {
                     case KEYBIND: {
@@ -126,6 +129,7 @@ public class ModuleManager {
 
         for (Module module : modules) {
             JSONObject moduleSettingsContent = content.getJSONObject(module.getName());
+            if (moduleSettingsContent.getBoolean("enabled")) module.onEnable();
             for (Setting setting : Main.settingManager.modulesSettings(module)) {
                 switch (setting.getSettingType()) {
                     case KEYBIND: {

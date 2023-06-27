@@ -13,7 +13,7 @@ import java.util.*;
 
 public class Module {
 
-    public Minecraft mc = Minecraft.getMinecraft();
+    public static Minecraft mc = Minecraft.getMinecraft();
 
     @Getter private String name;
     @Getter private String description;

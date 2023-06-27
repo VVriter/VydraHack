@@ -4,6 +4,7 @@ import com.vydra.death.screen.gui.click.GuiUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -280,6 +281,54 @@ public class Render2d {
 
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();
+    }
+
+
+
+
+
+
+    public static void drawTracerPointer(float x, float y, float size, float widthDiv, float heightDiv, boolean outline, float outlineWidth, int color) {
+        boolean blend = GL11.glIsEnabled(3042);
+        float alpha = (float) (color >> 24 & 0xFF) / 255.0f;
+        GL11.glEnable(3042);
+        GL11.glDisable(3553);
+        GL11.glBlendFunc(770, 771);
+        GL11.glEnable(2848);
+        GL11.glPushMatrix();
+        hexColor(color);
+        GL11.glBegin(7);
+        GL11.glVertex2d(x, y);
+        GL11.glVertex2d(x - size / widthDiv, y + size);
+        GL11.glVertex2d(x, y + size / heightDiv);
+        GL11.glVertex2d(x + size / widthDiv, y + size);
+        GL11.glVertex2d(x, y);
+        GL11.glEnd();
+        if (outline) {
+            GL11.glLineWidth(outlineWidth);
+            GL11.glColor4f(0.0f, 0.0f, 0.0f, alpha);
+            GL11.glBegin(2);
+            GL11.glVertex2d(x, y);
+            GL11.glVertex2d(x - size / widthDiv, y + size);
+            GL11.glVertex2d(x, y + size / heightDiv);
+            GL11.glVertex2d(x + size / widthDiv, y + size);
+            GL11.glVertex2d(x, y);
+            GL11.glEnd();
+        }
+        GL11.glPopMatrix();
+        GL11.glEnable(3553);
+        if (!blend) {
+            GL11.glDisable(3042);
+        }
+        GL11.glDisable(2848);
+    }
+
+    public static void hexColor(int hexColor) {
+        float red = (float) (hexColor >> 16 & 0xFF) / 255.0f;
+        float green = (float) (hexColor >> 8 & 0xFF) / 255.0f;
+        float blue = (float) (hexColor & 0xFF) / 255.0f;
+        float alpha = (float) (hexColor >> 24 & 0xFF) / 255.0f;
+        GL11.glColor4f(red, green, blue, alpha);
     }
 
 }

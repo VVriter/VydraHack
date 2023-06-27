@@ -13,7 +13,7 @@ public class DisableAction implements IModuleAction {
 
     @Override
     public String getName() {
-        return "enable";
+        return "disable";
     }
 
     @Override

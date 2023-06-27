@@ -15,7 +15,7 @@ import java.awt.*;
 
 public class ItemShader extends Module {
     public ItemShader() {
-        super("ItemShader", "", Category.RENDER);
+        super("ItemShader", Category.RENDER);
     }
 
     @SubscribeEvent

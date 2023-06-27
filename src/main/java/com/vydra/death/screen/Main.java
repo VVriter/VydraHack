@@ -12,7 +12,10 @@ import com.vydra.death.screen.plugins.PluginLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import org.apache.logging.log4j.Logger;
+
+import java.io.File;
 
 @Mod(modid = Main.MODID, name = Main.NAME, version = Main.VERSION)
 public class Main {
@@ -40,7 +43,10 @@ public class Main {
         settingManager = new SettingManager();
         moduleManager = new ModuleManager();
         moduleManager.register();
-        moduleManager.saveConfig(moduleManager.getDefaultConfigFile());
+
+        try {
+            moduleManager.loadConfig(new File("./vydra/default.cfg"));
+        } catch (Exception ignored) {}
 
         configManager = new ConfigManager();
         discordRpcManager = new DiscordRpcManager();
@@ -52,6 +58,12 @@ public class Main {
         } catch (Exception ignored) {
 
         }
+    }
+
+
+    @EventHandler
+    public void onShutdown(FMLServerStoppedEvent event) {
+        moduleManager.saveConfig(moduleManager.getDefaultConfigFile());
     }
 
 }

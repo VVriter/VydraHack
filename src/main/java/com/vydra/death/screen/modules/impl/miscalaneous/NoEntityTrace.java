@@ -13,7 +13,7 @@ public class NoEntityTrace extends Module {
     @Getter public static NoEntityTrace instance;
 
     public NoEntityTrace() {
-        super("NoEntityTrace", "", Category.MISCELLANEOUS);
+        super("NoEntityTrace", Category.MISCELLANEOUS);
         instance = this;
     }
 

@@ -99,7 +99,7 @@ public class ItemViewModel extends Module {
 
 
     public ItemViewModel() {
-        super("ItemViewModel", "", Category.RENDER);
+        super("ItemViewModel", Category.RENDER);
         INSTANCE = this;
     }
 
