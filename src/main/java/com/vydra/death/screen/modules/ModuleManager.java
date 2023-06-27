@@ -5,10 +5,13 @@ import com.vydra.death.screen.Main;
 import com.vydra.death.screen.modules.impl.client.FakeVanillaClient;
 import com.vydra.death.screen.modules.impl.client.DiscordRPC;
 import com.vydra.death.screen.modules.impl.client.Gui;
+import com.vydra.death.screen.modules.impl.combat.SkullBurrow;
 import com.vydra.death.screen.modules.impl.exploit.HitboxDesync;
 import com.vydra.death.screen.modules.impl.miscalaneous.KickSound;
 import com.vydra.death.screen.modules.impl.miscalaneous.NoEntityTrace;
 import com.vydra.death.screen.modules.impl.exploit.CornerClip;
+import com.vydra.death.screen.modules.impl.movement.FastFall;
+import com.vydra.death.screen.modules.impl.movement.InstantSpeed;
 import com.vydra.death.screen.modules.impl.render.*;
 import com.vydra.death.screen.modules.impl.miscalaneous.Fakeplayer;
 import com.vydra.death.screen.modules.settings.Setting;
@@ -45,7 +48,11 @@ public class ModuleManager {
             new HitboxDesync(),
             new BurrowEsp(),
             new PyroArrow(),
-            new KickSound()
+            new KickSound(),
+            new FastFall(),
+            new Search(),
+            new InstantSpeed(),
+            new SkullBurrow()
     };
 
     public void register() {
