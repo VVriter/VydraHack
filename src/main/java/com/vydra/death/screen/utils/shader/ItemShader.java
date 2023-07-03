@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 
-import static com.vydra.death.screen.utils.Render2d.mc;
+import static com.vydra.death.screen.utils.render.Render2d.mc;
 
 public class ItemShader extends FramebufferShader {
 

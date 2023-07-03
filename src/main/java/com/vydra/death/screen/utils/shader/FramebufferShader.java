@@ -10,7 +10,7 @@ import org.lwjgl.opengl.Display;
 
 import java.awt.*;
 
-import static com.vydra.death.screen.utils.Render2d.mc;
+import static com.vydra.death.screen.utils.render.Render2d.mc;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.glUseProgram;
 

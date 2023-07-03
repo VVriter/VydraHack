@@ -6,7 +6,7 @@ import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.impl.client.Gui;
 import com.vydra.death.screen.modules.settings.Setting;
 import com.vydra.death.screen.modules.settings.types.ColorSetting;
-import com.vydra.death.screen.utils.Render2d;
+import com.vydra.death.screen.utils.render.Render2d;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

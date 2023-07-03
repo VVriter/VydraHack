@@ -7,7 +7,7 @@ import com.vydra.death.screen.modules.settings.types.BooleanSetting;
 import com.vydra.death.screen.modules.settings.types.ColorSetting;
 import com.vydra.death.screen.modules.settings.types.SliderSetting;
 import com.vydra.death.screen.utils.EntityUtil;
-import com.vydra.death.screen.utils.Render2d;
+import com.vydra.death.screen.utils.render.Render2d;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;

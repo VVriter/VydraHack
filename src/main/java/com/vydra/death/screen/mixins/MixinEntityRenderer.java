@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import static com.vydra.death.screen.utils.Render2d.mc;
+import static com.vydra.death.screen.utils.render.Render2d.mc;
 
 @Mixin( EntityRenderer.class )
 public class MixinEntityRenderer {

@@ -4,7 +4,7 @@ import com.vydra.death.screen.gui.click.GuiUtil;
 import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.Module;
 import com.vydra.death.screen.modules.impl.client.Gui;
-import com.vydra.death.screen.utils.Render2d;
+import com.vydra.death.screen.utils.render.Render2d;
 import com.vydra.death.screen.utils.animations.EaseLeft;
 import com.vydra.death.screen.utils.animations.EaseRight;
 

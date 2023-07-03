@@ -29,11 +29,13 @@ import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 import java.io.*;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Stream;
 
 public class ModuleManager {
 
+    @Getter
     private final Module[] modules = {
             new Gui(),
             new FullBright(),
@@ -67,6 +69,24 @@ public class ModuleManager {
         MinecraftForge.EVENT_BUS.unregister(this);
     }
 
+    public void registerModule(Module module) {
+        addObjectToArray(modules, module);
+    }
+
+    private void addObjectToArray(Object[] array, Object objectToAdd) {
+        // Create a new array with increased length
+        Object[] newArray = new Object[array.length + 1];
+
+        // Copy the existing elements to the new array
+        System.arraycopy(array, 0, newArray, 0, array.length);
+
+        // Add the new object to the last index of the new array
+        newArray[newArray.length - 1] = objectToAdd;
+
+        // Update the reference to the new array
+        array = newArray;
+    }
+
 
     @SubscribeEvent
     public void onTyping(InputEvent.KeyInputEvent event) {
@@ -74,10 +94,6 @@ public class ModuleManager {
             if (e.getKeySetting().getValue() == Keyboard.getEventKey() && Keyboard.getEventKeyState())
                     e.toogle();
         });
-    }
-
-    public Module[] getModules() {
-        return modules;
     }
 
     @SneakyThrows

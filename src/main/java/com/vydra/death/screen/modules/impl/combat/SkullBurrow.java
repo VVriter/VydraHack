@@ -1,6 +1,5 @@
 package com.vydra.death.screen.modules.impl.combat;
 
-import com.vydra.death.screen.events.PacketEvent;
 import com.vydra.death.screen.modules.Category;
 import com.vydra.death.screen.modules.Module;
 import com.vydra.death.screen.utils.player.BlockUtil;
@@ -9,10 +8,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPacketHeldItemChange;
-import net.minecraft.network.play.server.SPacketEntityVelocity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class SkullBurrow extends Module {
     public SkullBurrow() {

@@ -6,8 +6,7 @@ import com.vydra.death.screen.gui.click.IGuiComponent;
 import com.vydra.death.screen.modules.Category;
 import com.vydra.death.screen.modules.Module;
 import com.vydra.death.screen.modules.impl.client.Gui;
-import com.vydra.death.screen.modules.settings.types.BooleanSetting;
-import com.vydra.death.screen.utils.Render2d;
+import com.vydra.death.screen.utils.render.Render2d;
 import com.vydra.death.screen.utils.animations.EaseIn;
 import com.vydra.death.screen.utils.animations.EaseOut;
 
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.vydra.death.screen.utils.Render2d.mc;
+import static com.vydra.death.screen.utils.render.Render2d.mc;
 
 public class CategoryComponent implements IGuiComponent {
 

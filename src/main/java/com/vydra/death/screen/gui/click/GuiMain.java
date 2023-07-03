@@ -1,9 +1,14 @@
 package com.vydra.death.screen.gui.click;
 
 import com.vydra.death.screen.gui.click.components.CategoryComponent;
+import com.vydra.death.screen.gui.click.particle.ParticleSystem;
 import com.vydra.death.screen.modules.Category;
+import com.vydra.death.screen.utils.render.Render2d;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +16,20 @@ import java.util.stream.Stream;
 
 public class GuiMain extends GuiScreen {
 
+    private ParticleSystem particleSystem;
+
     public static boolean isDragging;
 
     private List<CategoryComponent> frames;
     private int xOffset;
     private int yOffset;
+
+    @Override
+    public void onResize(Minecraft mcIn, int w, int h) {
+        super.onResize(mcIn, w, h);
+        if (this.particleSystem != null)
+            this.particleSystem = new ParticleSystem(new ScaledResolution(mcIn));
+    }
 
     @Override
     public void initGui() {
@@ -30,12 +44,18 @@ public class GuiMain extends GuiScreen {
             frames.add(component);
             xOffset += component.getWidth() + 3;
         });
+
+        this.particleSystem = new ParticleSystem(new ScaledResolution(mc));
     }
 
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
+        particleSystem.update();
+        if (this.particleSystem != null)
+            this.particleSystem.render(mouseX, mouseY);
+
         frames.forEach(frame -> {
             frame.draw();
             frame.onHover(mouseX, mouseY);

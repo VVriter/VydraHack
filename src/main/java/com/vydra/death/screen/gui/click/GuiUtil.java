@@ -3,9 +3,7 @@ package com.vydra.death.screen.gui.click;
 import com.vydra.death.screen.modules.settings.Setting;
 import net.minecraft.client.renderer.GlStateManager;
 
-import java.awt.*;
-
-import static com.vydra.death.screen.utils.Render2d.mc;
+import static com.vydra.death.screen.utils.render.Render2d.mc;
 
 public class GuiUtil {
 

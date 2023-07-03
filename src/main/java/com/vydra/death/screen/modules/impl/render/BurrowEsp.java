@@ -4,7 +4,7 @@ import com.vydra.death.screen.modules.Category;
 import com.vydra.death.screen.modules.Module;
 import com.vydra.death.screen.modules.settings.types.ColorSetting;
 import com.vydra.death.screen.modules.settings.types.SliderSetting;
-import com.vydra.death.screen.utils.Render3d;
+import com.vydra.death.screen.utils.render.Render3d;
 import com.vydra.death.screen.utils.Timer;
 import com.vydra.death.screen.utils.player.BlockUtil;
 import lombok.Getter;
